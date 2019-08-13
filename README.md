@@ -32,7 +32,7 @@ This project will be built with:
 ## Implementation Timeline
 
 ### Day 1: 
-Setup webpack and webpack.config.js. Create basic entry file and skeleton of classes that I may need. Goals for the day:
+Setup webpack and webpack.config.js. Create basic entry file and skeleton of classes that I may need.
 
  - Get webpack up and running
  - Determine what files I'll need, and write basic logic of each.
