@@ -36,7 +36,18 @@ Setup webpack and webpack.config.js. Create basic entry file and skeleton of cla
  - Determine what files I'll need, and write basic logic of each.
  
 ### Day 2:
+Implement USAspending api. Add left side list, and controls.
+
+ - Have a the api integrated and reliable.
+ - Have and intially style list and controls.
  
 ### Day 3:
+Have dynamic graph up and running.
+
+ - Have the graph, list and controls sync.
+ - Intially style graph 
  
 ### Day 4:
+Style, style, style.
+
+ - Finish the look and feel of the app.
