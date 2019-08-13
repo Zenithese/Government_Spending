@@ -5,6 +5,8 @@
 The proverbial political climate is often weathered with debate, misinformation, and confusion about government spending.
 This project aims to empower citizens, denizens, or otherwise with a visually intuitive resourse to overcome spending rhetoric and propaganda.
 
+Inspired by 16segments (https://github.com/mrkvncnt/16Segments)
+
 ## Functionality & MVP
 
 - See nation government spending
