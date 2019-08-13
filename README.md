@@ -19,7 +19,7 @@ The app will consist of a single screen with a list of primary data on left with
 and a corresponding data visualization on the right. 
 Addtionally, the upper right will have icons linking to my GitHub and LinkedIn profile.
 
-https://wireframe.cc/pxvIQa
+![Screen Shot 2019-08-13 at 8 58 23 AM](https://user-images.githubusercontent.com/50927941/62943526-aad8c880-bda8-11e9-883e-bc366dbcb69c.png)
 
 ## Architectures and Technologies
 
