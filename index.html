@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <link rel="stylesheet" type="text/css" href="sequences.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="header-left">THING & THING % THING</div>
+            <div class="header-right">HIRE ME</div>
+        </div>
+        <div class="left-right-container">
+            <div class="left">
+                <div class="left-section">
+                    <div class="left-top"></div>
+                    <div class="left-middle"></div>
+                    <div class="left-bottom"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="visualizer-container">
+                    <!-- <div class="visualizer"> -->
+                        <button onclick="switchGraph()" class="switch"></button>
+                        <canvas id="circle"></canvas>
+                        <canvas id="radar" style="display: none;"></canvas>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="footer">I'm one loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog footer :)</div>
+    </div>
+    <!-- <div class="test">This is a test</div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src='./src/index.js'></script>
+    <script>
+        function switchGraph() {
+            if (document.getElementById("circle").style.display === "none") {
+                document.getElementById("circle").style.display = "inherit";
+                document.getElementById("radar").style.display = "none";
+            } else {
+                document.getElementById("circle").style.display = "none";
+                document.getElementById("radar").style.display = "inherit";
+            }
+        }
+    </script>
+</body>
+
+</html>
