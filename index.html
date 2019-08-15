@@ -12,7 +12,7 @@
     <div class="main">
         <div class="header">
             <div class="header-left">THING & THING % THING</div>
-            <div class="header-right">HIRE ME</div>
+            <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
         </div>
         <div class="left-right-container">
             <div class="left">
@@ -23,10 +23,11 @@
                 </div>
             </div>
             <div class="right">
-                <div class="visualizer-container">
+                <div id="visualizer-container">
                     <!-- <div class="visualizer"> -->
                         <button onclick="switchGraph()" class="switch"></button>
-                        <canvas id="circle"></canvas>
+                        <!-- <svg class="piechart" ></svg> -->
+                        <canvas id="circle" ></canvas>
                         <canvas id="radar" style="display: none;"></canvas>
                     <!-- </div> -->
                 </div>
@@ -40,12 +41,26 @@
     <script>
         function switchGraph() {
             if (document.getElementById("circle").style.display === "none") {
-                document.getElementById("circle").style.display = "inherit";
+                document.getElementById("circle").style.display = "block";
                 document.getElementById("radar").style.display = "none";
+                // document.getElementById("visualizer-container").style.display = "none";
+                // document.getElementById("visualizer-container").style.display = "block";
+                document.getElementById("circle").className = document.getElementById("circle").className + "chartjs-render-monitor"
+                document.getElementById("radar").className = "";
+                // element = document.getElementById("circle");
+                // element.addEventListener("click", function (e) {
+                //     e.preventDefault;
+                //     element.classList.remove("chartjs-render-monitor");
+                //     void element.offsetWidth;
+                //     element.classList.add("chartjs-render-monitor");
+                // }, false);
             } else {
                 document.getElementById("circle").style.display = "none";
-                document.getElementById("radar").style.display = "inherit";
+                document.getElementById("radar").style.display = "block";
+                document.getElementById("radar").className = document.getElementById("radar").className + "chartjs-render-monitor"
+                document.getElementById("circle").className = "";
             }
+            d3.select("radar").transition().style("-webkit-animation", "chartjs-render-animation 0.001s;")
         }
     </script>
 </body>

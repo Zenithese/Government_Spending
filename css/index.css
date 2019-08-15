@@ -50,7 +50,7 @@
     height: 6%;
     margin: 15px;
     margin-left: 25%;
-    background-color: wheat;
+    background-color: #f5deb3;
 }
 
 .left-middle {
@@ -76,7 +76,7 @@
     background-color: tomato;
 }
 
-.visualizer-container {
+#visualizer-container {
     /* position: absolute;
     margin-left: 10%;
     top: 22%;
@@ -87,11 +87,17 @@
     max-height: 500px;
     max-width: 500px;
     display: flex; */
-    margin-top: 22%;
-    color: coral;
+    margin-top: 20%;
+    /* color: coral; */
+    /* height: 500px !important; */
     
 
 }
+/* 
+#circle {
+    min-width: 300px;
+    min-height: 500px;
+} */
 
 .visualizer {
     background-color: rgb(62, 223, 207);
@@ -108,4 +114,17 @@
 
 #radar {
     display: none ;
+}
+
+#circle:hover {
+    -webkit-animation: chartjs-render-animation 0.001s;
+    animation: chartjs-render-animation 0.001s;
+    animation-duration: 0.001s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: chartjs-render-animation;
 }
