@@ -1,5 +1,5 @@
 /node_modules
 
-# /.bundle
-# /bundle.js.map
-# /bundle.js
+/.bundle
+/bundle.js.map
+/bundle.js

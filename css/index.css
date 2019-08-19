@@ -1,4 +1,11 @@
-.main {
+body {
+    margin: inherit;
+    overflow: hidden;
+    font-family: monospace;
+    color: rgb(0, 0, 255),
+}
+
+#main {
     height: -webkit-fill-available;
     width: 100%;
     display: flex;
@@ -6,31 +13,105 @@
     overflow: hidden;
 }
 
+.vid {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  /* z-index: -1; */
+}
+
+.main-content {
+    z-index: 1;
+}
+
+.selection-container {
+    width: 257px;
+    margin-left: 25%;
+}
+
+.state-select-button {
+    opacity: 0.7;
+}
+
+.button {
+    font-size: 31px;
+    font-weight: 700;
+    font-family: monospace;
+    cursor: pointer;
+    opacity: .7;
+    background: none;
+    border: none;
+    /* border-width: 12px; */
+    /* float: right; */
+    /* letter-spacing: 0.2em; */
+    text-shadow: 1px 1px 8px black;
+    outline: none;
+    position: relative;
+    /* left: 100px; */
+    top: 5px;
+}
+
+.button:hover {
+    transform: scale(1.5)
+}
+
+.following {
+    opacity: .7;
+    font-size: 4px;
+    color: aliceblue;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: -.4em;
+    text-shadow: 1px 1px 8px black;
+}
+
+.of {
+    position: relative;
+    bottom: 4px;
+    opacity: .7;
+    font-size: 4px;
+    color: aliceblue;
+    letter-spacing: -0.2em;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-shadow: 1px 1px 8px black;
+}
+
 .header {
     /* position: absolute; */
     height: 30px;
     /* padding-bottom: 30px; */
-    background-color: rgb(47, 79, 79);
+    /* background-color: rgb(47, 79, 79); */
     color: aliceblue;
+    text-shadow: 4px 4px 8px black;
     display: flex;
     justify-content: space-between;
 }
 
 .header-left {
+    margin-left: 5px;
 }
 
 .header-right {
+    margin-right: 5px;
 }
 
 .left-right-container {
     display: flex;
     height: 95%;
+    /* background-image: url("https://www.nps.gov/common/uploads/structured_data/3C7D34E6-1DD8-B71B-0BBB1C0F478318E2.jpg"); */
+    /* background-color: steelblue; */
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 .left {
     height: -webkit-fill-available;
     width: 50%;
-    background-color: rgb(70, 130, 180);
+    /* background-color: rgb(70, 130, 180); */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -38,11 +119,21 @@
     vertical-align: middle;
 }
 
-.left-section {
+#left-section-1 {
     position: absolute;
     top: 15%;
     right: 66%;
     height: 55%;
+    opacity: 0.7;
+    letter-spacing: .02em;
+}
+
+#left-section-2 {
+    position: absolute;
+    top: 15%;
+    right: 66%;
+    height: 55%;
+    display: none;
 }
 
 .left-top {
@@ -54,11 +145,21 @@
 }
 
 .left-middle {
-    width: 300px;
-    height: 100%;
+    width: 269%;
+    height: 115%;
+    display: flex;
     margin: 15px;
     margin-left: 25%;
-    background-color: wheat;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    color: aliceblue;
+    flex-direction: column;
+    text-shadow: 4px 3px 8px black;
+}
+
+.budget-function {
+    display: flex !important;
+    /* padding: 0px, 10px; */
 }
 
 .left-bottom {
@@ -73,7 +174,7 @@
     float: right;
     width: 50%;
     height: -webkit-fill-available;
-    background-color: tomato;
+    /* background-color: tomato; */
 }
 
 #visualizer-container {
@@ -93,6 +194,13 @@
     
 
 }
+
+.switch {
+    /* float: right; */
+    position: absolute;
+    left: 25%;
+    top: 0;
+}
 /* 
 #circle {
     min-width: 300px;
@@ -106,14 +214,26 @@
 }
 
 .footer {
-    position: absolute;
+    position: sticky;
     bottom: 25px;
     left: 25%;
     background-color: transparent;
+    color: aliceblue;
+    text-shadow: 4px 4px 8px black;
+    text-align: center;
+    opacity: 0.4;
 }
 
-#radar {
-    display: none ;
+.radar-container {
+    position: sticky;
+    width: 90%;
+    left: 5%;
+    top: 5%;
+}
+
+#radar-controls {
+    position: absolute;
+    top: 0;
 }
 
 #circle:hover {
@@ -127,4 +247,112 @@
     animation-fill-mode: none;
     animation-play-state: running;
     animation-name: chartjs-render-animation;
+}
+
+/* dropdown */
+
+.dropbtn {
+    background-color: rgb(70, 130, 180);
+    color: aliceblue;
+    font-size: 12px;
+    /* border: none; */
+    cursor: pointer;
+    opacity: .7;
+    border-width: 12px;
+    position: relative;
+    right: 14px;
+    /* left: 25px; */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 98px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 14px;
+    z-index: 1;
+    opacity: .9;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  overflow: scroll;
+  max-height: 120px;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* D3 Block Map */
+
+.state:hover {
+    cursor: pointer;
+}
+
+.state rect {
+    fill: #dedede;
+}
+
+.state text {
+    font: 12px sans-serif;
+    text-anchor: middle;
+}
+
+.state text:hover {
+    font: 12px sans-serif;
+    text-anchor: middle;
+}
+
+.state--selected rect {
+    fill: #9f4a6c;
+}
+
+.state--selected text {
+    fill: white;
+}
+
+/* spinner */
+
+@keyframes spinner-line-fade-more {
+  0%, 100% {
+    opacity: 0; /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-quick {
+  0%, 39%, 100% {
+    opacity: 0.25; /* minimum opacity */
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-default {
+  0%, 100% {
+    opacity: 0.22; /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
 }

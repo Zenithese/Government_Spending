@@ -1,6 +1,4 @@
-// Api request
-
-// document.addEventListener("submit", () => {
+/////////////////api request functions////////////////////
 
 function getData(url) {
     return fetch(url).then(response => response.json())
@@ -22,283 +20,157 @@ function postData(url = '', data = {}) {
     })
         .then(response => response.json())
 }
-    
-// })
-budget_function_titles = []
-budget_function_codes = []
-// budget_function_titles = ["National Defense", "Medicare", "Social Security", "Health", "Income Security", "Net Interest", "General Government", "Veterans Benefits and Services", "International Affairs", "Education, Training, Employment, and Social Services", "Transportation", "Administration of Justice", "Natural Resources and Environment", "Agriculture", "Community and Regional Development", "General Science, Space, and Technology", "Commerce and Housing Credit", "Energy", "Governmental Receipts"]
-// budget_function_codes = ["050", "570", "650", "550", "600", "900", "800", "700", "150", "500", "400", "750", "300", "350", "450", "250", "370", "270", "000"]
-// budget_function_titles = ["Administration of Justice", "Agriculture", "Commerce and Housing Credit", "Community and Regional Development", "Education, Employment, and Social Services", "Energy", "General Government", "General Science, Space, and Technology", "Governmental Receipts", "Health", "Income Security", "International Affairs", "Medicare", "Multiple functions", "National Defense", "Natural Resources and Environment", "Net Interest", "Social Security", "Transportation", "Veterans Benefits and Services"]
-// budget_function_codes = ["750", "350", "370", "450", "500", "270", "800", "250", "000", "550", "600", "150", "570", "990", "050", "300", "900", "650", "400", "700"]
-budget_function_amounts = []
-federal_budget = 0
 
-getData('https://api.usaspending.gov/api/v2/budget_functions/list_budget_functions/').then(data => {
-    data.results.map((result) => {
-        budget_function_titles.push(result.budget_function_title)
-        budget_function_codes.push(result.budget_function_code)
-    }).then(budget_function_codes.map((code) => {
-        postData('https://api.usaspending.gov/api/v2/spending/', {
-            "type": "budget_function",
-            "filters": {
-                "fy": "2019",
-                "budget_function": code,
-            }
-        }).then(data => {
-            budget_function_amounts.push(data.total)
-            // console.log(federal_budget += data.total)
-        }).catch(error => {
-            console.log(error)
-        })
-    }))
+fiscalYear = "2018"
 
-})
-    .catch(error => console.log(error))
+function selectFiscalYear(selectedFiscalYear) {
+    fiscalYear = selectedFiscalYear;
+}
 
-//STATE PARMS-------------------------------------------------------------------
-let Environmental = []
-let Education = []
-let Health = []
-let Defense = []
-let states = [[],[],[]]
+//////////////////////////// API Request /////////////////////////////////
 
-postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-    "scope": "place_of_performance",
-    "geo_layer": "state",
-    "geo_layer_filters": ["CA", "NY", "GA"],
-    "filters": {
-        "keywords": ['health'],
-        "time_period": [
-            {
-                "start_date": "2016-10-01",
-                "end_date": "2017-09-30"
-            }
-        ]
+const freedom = () => {
+    budget_function_titles = []
+    budget_function_codes = []
+    budget_function_amounts = []
+    federal_budget = 0
 
-    },
-    "subawards": false
-}).then(data => {
-    // debugger
-    console.log(data)
-    data.results.forEach(element => {
-        Health.push(element.aggregated_amount)
-    });
-    Health.forEach((element, i) => {
-        states[i].push({health: element})
-    });
-}).then(postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-    "scope": "place_of_performance",
-    "geo_layer": "state",
-    "geo_layer_filters": ["CA", "NY", "GA"],
-    "filters": {
-        "keywords" : ['environmental'],
-        "time_period": [
-            {
-                "start_date": "2016-10-01",
-                "end_date": "2017-09-30"
-            }
-        ]
-        
-    },
-    "subawards": false
-}).then(data => {
-    // debugger
-    console.log(data)
-    data.results.forEach(element => {
-        Environmental.push(element.aggregated_amount)
-    });
-    Environmental.forEach((element, i) => {
-        states[i].push({envionmental: element})
-    });
-})).then(postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-    "scope": "place_of_performance",
-    "geo_layer": "state",
-    "geo_layer_filters": ["CA", "NY", "GA"],
-    "filters": {
-        "keywords" : ['education'],
-        "time_period": [
-            {
-                "start_date": "2016-10-01",
-                "end_date": "2017-09-30"
-            }
-        ]
-        
-    },
-    "subawards": false
-}).then(data => {
-    // debugger
-    console.log(data)
-    data.results.forEach(element => {
-        Education.push(element.aggregated_amount)
-    });
-    Education.forEach((element, i) => {
-        states[i].push({education: element})
-    });
-})).then(postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-    "scope": "place_of_performance",
-    "geo_layer": "state",
-    "geo_layer_filters": ["CA", "NY", "GA"],
-    "filters": {
-        "keywords" : ['defense'],
-        "time_period": [
-            {
-                "start_date": "2016-10-01",
-                "end_date": "2017-09-30"
-            }
-        ]
-        
-    },
-    "subawards": false
-}).then(data => {
-    // debugger
-    console.log(data)
-    data.results.forEach(element => {
-        Defense.push(element.aggregated_amount)
-    });
-    Defense.forEach((element, i) => {
-        states[i].push({defense: element})
-    });
-}).catch(error => {
-    // debugger
-    console.log(error)
-})).then(console.log(states))
+    _promise1 = getData('https://api.usaspending.gov/api/v2/budget_functions/list_budget_functions/').then(data => {
+        // console.log(data)
+        data.results.map((result) => {
+            // budget_function_titles.push(result.budget_function_title)
+            budget_function_codes.push(result.budget_function_code)
+        }).then(budget_function_codes.map((code) => {
+            postData('https://api.usaspending.gov/api/v2/spending/', {
+                "type": "budget_function",
+                // "state": "CA",
+                "filters": {
+                    "fy": fiscalYear,
+                    "budget_function": code,
+                }
+            }).then(data => {
+                budget_function_amounts.push(data)
+            }).catch(error => {
+                console.log(error)
+            })
+        }))
 
-//STATE PARMS-------------------------------------------------------------------
+    })
+        .catch(error => console.log(error))
 
-// Chart.js graphs
+    ///////////////////////// Chart ////////////////////////////////
 
-let ctx = document.getElementById("circle")
-var myPieChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: budget_function_titles,
-        datasets: [{
-            label: "",
-            data: budget_function_amounts,
-            backgroundColor: [
-                'turquoise',
-                'darkslategrey',
-                'cyan',
-                'bisque',
-                'aliceblue',
-                'RosyBrown',
-                'DeepPink',
-                "dimgrey",
-                'indigo',
-                'lavender',
-                'peachpuff',
-                'royalblue',
-                'salmon',
-                'gold',
-                'crimson',
-                'blue',
-                'skyblue',
-                'ivory',
-                'khaki'
-
+    setTimeout(() => {
+        Promise.all([_promise1]).then(
+            // console.log(budget_function_amounts),
+            // console.log(budget_function_titles),
+            colors = [
+                // 'rgb(37, 97, 114)',
+                'rgb(50, 50, 140)',
+                'rgb(200, 40, 90)',
+                // 'rgb(42, 102, 119)',
+                'rgb(45, 45, 150)',
+                'rgb(211, 36, 78)',
+                // 'rgb(51, 132, 155)',
+                'rgb(40, 40, 160)',
+                'rgb(220, 28, 69)',
+                // 'rgb(53, 139, 162)',
+                'rgb(35, 35, 170)',
+                'rgb(228, 25, 64)',
+                // 'rgb(55, 145, 169)',
+                'rgb(30, 30, 180)',
+                'rgb(227, 18, 57)',
+                // 'rgb(58, 151, 176)',
+                'rgb(25, 25, 190)',
+                'rgb(235, 15, 50)',
+                // 'rgb(65, 171, 199)',
+                'rgb(20, 20, 205)',
+                'rgb(240, 11, 59)',
+                // 'rgb(68, 177, 207)',
+                'rgb(15, 15, 225)',
+                'rgb(245, 10, 58)',
+                // 'rgb(69, 180, 210)',
+                'rgb(10, 10, 245)',
+                'rgb(251, 8, 58)',
+                // 'rgb(71, 186, 217)',
+                'rgb(0, 0, 255)',
+                'rgb(255, 8, 55)',
+                // 'turquoise',
+                // 'darkslategrey',
+                // 'cyan',
+                // 'bisque',
+                // 'aliceblue',
+                // 'RosyBrown',
+                // 'DeepPink',
+                // "dimgrey",
+                // 'indigo',
+                // 'lavender',
+                // 'peachpuff',
+                // 'royalblue',
+                // 'salmon',
+                // 'gold',
+                // 'crimson',
+                // 'blue',
+                // 'skyblue',
+                // 'ivory',
+                // 'khaki'
             ],
-            borderColor: [
-                'turquoise',
-                'darkslategrey',
-            ],
-            borderWidth: 0,
-            hoverBorderColor: [
-                "black",
-                "black"
-            ]
-        }]
+            budget_function_amounts.sort(function (a, b) {
+                return b.total - a.total;
+            }),
+            ctx = document.getElementById("circle"),
+            Chart.defaults.global.defaultFontFamily = "monospace",
+            myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: budget_function_amounts.map((result) => {
+                        if (result.results.length === 0) {
+                            return "CALL YOUR CONGRESSPERSON"
+                        } else {
+                            return result.results[0].name
+                        }
+                    }),
+                    datasets: [{
+                        label: "",
+                        data: budget_function_amounts.map(result => {
+                            if (result.results.length === 0) {
+                                return 0
+                            } else {
+                                return result.results[0].amount
+                            }
 
-    },
-    options: {
-        responsive: true,
-        margin: 0,
-        // maintainAspectRatio: false,
-        legend: {
-            responsive: true,
-            display: true,
-            position: 'left',
-            // onClick: null
-            labels: {
-                boxWidth: 10,
-                fontSize: 12,
-                padding: 2,
-                fontColor: '#f5deb3',
-            }
-        },
-    }
-});
+                        }),
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        hoverBorderColor: [
+                        ]
+                    }]
 
-let ctx2 = document.getElementById("radar")
-var chart = new Chart(ctx2, {
-    type: 'radar',
-    data: {
-        datasets: [
-            {
-                label: 'California',
-                data: [0, 20, 40, 50],
-                backgroundColor: [
-                    'rgba(70, 130, 180, 0.7)',
-                ],
-                borderColor: [
-                    'rgb(70, 130, 180)',
-                ],
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBorderColor: 'rgb(70, 130, 180)',
-                hoverBorderColor: [
-                    "black",
-                    "black"
-                ]
-            },
-            {
-                label: 'New York',
-                data: [50, 80, 20, 10],
-                backgroundColor: [
-                    'rgba(47, 79, 79, 0.7)',
-                ],
-                borderColor: [
-                    'rgb(47, 79, 79)',
+                },
+                options: {
+                    responsive: true,
+                    margin: 0,
+                    // maintainAspectRatio: false,
+                    legend: {
+                        responsive: true,
+                        display: false,
+                        position: 'left',
+                        // onClick: null
+                        labels: {
+                            boxWidth: 10,
+                            fontSize: 12,
+                            padding: 2,
+                            fontColor: '#f5deb3',
+                        }
+                    },
+                }
+            }))
 
-                ],
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBorderColor: 'rgb(47, 79, 79)',
-                hoverBorderColor: [
-                    "black",
-                    "black"
-                ]
-            },
-            {
-                label: 'Georgia',
-                data: [70, 30, 10, 70],
-                backgroundColor: [
+        breakdown(budget_function_amounts, colors)
+    }, 3000)
+};
 
-                    'rgba(62, 223, 207, 0.7)',
-                ],
-                borderColor: [
-
-                    'rgb(62, 223, 207)',
-                ],
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBorderColor: 'rgb(62, 223, 207)',
-                hoverBorderColor: [
-                    "black",
-                    "black"
-                ]
-            }
-        ],
-        labels: ['Military', 'Education', 'Health', 'Environment']
-    },
-    options: {
-        scale: {
-            ticks: {
-                suggestedMin: 50,
-                suggestedMax: 100
-            }
-        }
-    }
-});
+freedom();
 
 // graveyard
 
@@ -340,3 +212,41 @@ var chart = new Chart(ctx2, {
 //         .attr("text-anchor", "middle")
 //         .text(function (d) { return d.data.name + ":" + d.data.budget_function; });
 // }
+
+// postData('https://api.usaspending.gov/api/v2/search/spending_by_category', {
+//     "type": "budget_function",
+//     "filters": {
+//         "fy": "2018",
+//         "budget_function": code,
+//     }
+// }).then(data => {
+//     console.log(data)
+// }).catch(error => {
+//     console.log(error)
+// })
+
+// budget_function_titles = ["National Defense", "Medicare", "Social Security", "Health", "Income Security", "Net Interest", "General Government", "Veterans Benefits and Services", "International Affairs", "Education, Training, Employment, and Social Services", "Transportation", "Administration of Justice", "Natural Resources and Environment", "Agriculture", "Community and Regional Development", "General Science, Space, and Technology", "Commerce and Housing Credit", "Energy", "Governmental Receipts"]
+// budget_function_codes = ["050", "570", "650", "550", "600", "900", "800", "700", "150", "500", "400", "750", "300", "350", "450", "250", "370", "270", "000"]
+// budget_function_titles = ["Administration of Justice", "Agriculture", "Commerce and Housing Credit", "Community and Regional Development", "Education, Employment, and Social Services", "Energy", "General Government", "General Science, Space, and Technology", "Governmental Receipts", "Health", "Income Security", "International Affairs", "Medicare", "Multiple functions", "National Defense", "Natural Resources and Environment", "Net Interest", "Social Security", "Transportation", "Veterans Benefits and Services"]
+// budget_function_codes = ["750", "350", "370", "450", "500", "270", "800", "250", "000", "550", "600", "150", "570", "990", "050", "300", "900", "650", "400", "700"]
+
+//     'rgb(75, 75, 75)',
+//     'rgb(75, 0, 0)',
+//     'rgb(0, 0, 105)',
+//     'rgb(105, 105, 105)',
+//     'rgb(105, 0, 0)',
+//     'rgb(0, 0, 135)',
+//     'rgb(135, 135, 135)',
+//     'rgb(135, 0, 0)',
+//     'rgb(0, 0, 165)',
+//     'rgb(165, 165, 165)',
+//     'rgb(165, 0, 0)',
+//     'rgb(0, 0, 195)',
+//     'rgb(195, 195, 195)',
+//     'rgb(195, 0, 0)',
+//     'rgb(0, 0, 225)',
+//     'rgb(225, 225, 225)',
+//     'rgb(225, 0, 0)',
+//     'rgb(0, 0, 255)',
+//     'rgb(255, 255, 255)',
+//     'rgb(255, 0, 0)',
