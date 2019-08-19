@@ -4,16 +4,74 @@ let Health = []
 let Defense = []
 let States = [{}, {}, {}]
 
-let stateFilters = selectedStates
+AbbToState = {"AK": "Alaska",
+    "AL": "Alabama",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NH": "New Hampshire",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+}
+
+// "District of Columbia"
+// "Puerto Rico"
+// "Guam"
+// "American Samoa"
+// "U.S.Virgin Islands"
+// "Northern Mariana Islands"
 
 /////////////////////////api request////////////////////////////////////////////
 
 function compare() {
-    debugger
+    document.getElementById("d3-block-map").style.display = "none";
+    document.getElementById("radar").style.display = "block";
     promise1 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
         "scope": "place_of_performance",
         "geo_layer": "state",
-        "geo_layer_filters": stateFilters,
+        "geo_layer_filters": selectedStates,
         "filters": {
             "keywords": ['health'],
             "time_period": [
@@ -26,7 +84,7 @@ function compare() {
         },
         "subawards": false
     }).then(data => {
-        // debugger
+        // 
         console.log(data)
         data.results.forEach(element => {
             Health.push(element.aggregated_amount)
@@ -39,7 +97,7 @@ function compare() {
     promise2 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
         "scope": "place_of_performance",
         "geo_layer": "state",
-        "geo_layer_filters": ["CA", "NY", "GA"],
+        "geo_layer_filters": selectedStates,
         "filters": {
             "keywords": ['environmental'],
             "time_period": [
@@ -52,7 +110,7 @@ function compare() {
         },
         "subawards": false
     }).then(data => {
-        // debugger
+        // 
         console.log(data)
         data.results.forEach(element => {
             Environmental.push(element.aggregated_amount)
@@ -65,7 +123,7 @@ function compare() {
     promise3 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
         "scope": "place_of_performance",
         "geo_layer": "state",
-        "geo_layer_filters": ["CA", "NY", "GA"],
+        "geo_layer_filters": selectedStates,
         "filters": {
             "keywords": ['education'],
             "time_period": [
@@ -78,7 +136,7 @@ function compare() {
         },
         "subawards": false
     }).then(data => {
-        // debugger
+        // 
         console.log(data)
         data.results.forEach(element => {
             Education.push(element.aggregated_amount)
@@ -91,7 +149,7 @@ function compare() {
     promise4 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
         "scope": "place_of_performance",
         "geo_layer": "state",
-        "geo_layer_filters": ["CA", "NY", "GA"],
+        "geo_layer_filters": selectedStates,
         "filters": {
             "keywords": ['defense'],
             "time_period": [
@@ -104,7 +162,7 @@ function compare() {
         },
         "subawards": false
     }).then(data => {
-        // debugger
+        // 
         console.log(data)
         data.results.forEach(element => {
             Defense.push(element.aggregated_amount)
@@ -119,6 +177,7 @@ function compare() {
     //////////////////////////////// Chart /////////////////////////////////////
 
     setTimeout(() => {
+        
         Promise.all([promise1, promise2, promise3, promise4]).then(
             ctx2 = document.getElementById("radar"),
             Chart.defaults.global.defaultFontColor = "aliceblue",
@@ -127,7 +186,7 @@ function compare() {
                 data: {
                     datasets: [
                         {
-                            label: 'Georgia',
+                            label: AbbToState[selectedStates[2]],
                             data: Object.values(States[1]),
                             backgroundColor: [
                                 'rgba(47, 79, 79, 0.7)',
@@ -145,7 +204,7 @@ function compare() {
                             ]
                         },
                         {
-                            label: 'New York',
+                            label: AbbToState[selectedStates[1]],
                             data: Object.values(States[2]),
                             backgroundColor: [
 
@@ -164,7 +223,7 @@ function compare() {
                             ]
                         },
                         {
-                            label: 'California',
+                            label: AbbToState[selectedStates[0]],
                             data: Object.values(States[0]),
                             backgroundColor: [
                                 'rgba(70, 130, 180, 0.7)',
