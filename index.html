@@ -11,6 +11,7 @@
 <body>
     <div id="main">
         <video class="vid" autoplay loop muted>
+            <source src="videos/_Eagle.mp4" type="video/mp4">
             <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
         </video>
         <div class="main-content">
@@ -45,6 +46,10 @@
                         <!-- <div class="left-bottom"></div> -->
                     </div>
                 </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-top: 15vh;"></div>
+                    <svg id="d3-block-map" style="opacity: 0.7; display: none;" width="960" height="500"></svg>
+                </div>
                 <div class="right">
                     <div id="visualizer-container">
                         <!-- <div class="visualizer"> -->
@@ -61,7 +66,7 @@
 
     <meta charset="utf-8">
    
-    <svg id="d3-block-map" style="opacity: 0.7; display: none; position: absolute; bottom: 55px; left: 10%; z-index: 5000;" width="960" height="500"></svg>
+    
     <script id="grid" type="text/plain">
                                   ME
                    WI          VT NH
