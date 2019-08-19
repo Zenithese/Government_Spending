@@ -36,10 +36,12 @@ body {
 }
 
 .button {
+    
     font-size: 31px;
     font-weight: 700;
     font-family: monospace;
     cursor: pointer;
+    /* cursor: url("images/eagle-red-white-blue-2-carol-cavalaris.jpg"), auto; */
     opacity: .7;
     background: none;
     border: none;
