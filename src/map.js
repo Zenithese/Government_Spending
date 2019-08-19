@@ -19,7 +19,7 @@ function drawMap() {
 
     var gridWidth = d3.max(states, function (d) { return d.x; }) + 1,
         gridHeight = d3.max(states, function (d) { return d.y; }) + 1,
-        cellSize = 40;
+        cellSize = 60;
 
     var state = svg.append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
