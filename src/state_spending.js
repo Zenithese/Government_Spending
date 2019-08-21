@@ -66,8 +66,7 @@ AbbToState = {"AK": "Alaska",
 /////////////////////////api request////////////////////////////////////////////
 
 function compare() {
-    // document.getElementById("d3-block-map").style.display = "none";
-    // document.getElementById("radar").style.display = "block";
+    document.getElementById("radar").style.display = "none";
     promise1 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
         "scope": "place_of_performance",
         "geo_layer": "state",
@@ -253,5 +252,7 @@ function compare() {
             })
         )
         console.log(States)
+        document.getElementById("spinner").style.display = "none"
+        document.getElementById("radar").style.display = "block";
     }, 5000)
 }

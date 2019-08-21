@@ -3,6 +3,8 @@
 
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="numeral.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
     <!-- <script src='./src/spinner.js'></script> -->
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
 </head>
@@ -53,7 +55,7 @@
                     <button class="scroll-buttons" onclick="scrollIt('#page3')"></button>
                     <div class="radar-container">
                         <div id="radar-controls">
-                            <button class="compare-button" onclick="clicked()">Compare</button>
+                            <button class="compare-button" onclick="clicked()">Select Three States and Compare</button>
                         </div>
                     </div>
                     <div class="left-right-container">
@@ -69,6 +71,10 @@
                 <div class="main-content" style="height: 95%; text-align: center;">
                     <button class="left-scroll-buttons" onclick="scrollIt('#page2')"></button>
                     <div class="radar-container" style="display: inline-block; padding-top: 25px;">
+                        <div id="spinner" class="lds-ripple" style="display: none;">
+                            <div></div>
+                            <div></div>
+                        </div>
                         <canvas id="radar" style="opacity: 0.7;"></canvas>
                     </div>
                 </div>
@@ -143,7 +149,9 @@ $(document).ready(function(){
             
             // displayMap()
             compare()
+            document.getElementById("spinner").style.display = ""
             scrollIt('#page3')
+
         }
     </script>
     <script>

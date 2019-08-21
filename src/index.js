@@ -150,18 +150,18 @@ const freedom = () => {
                 options: {
                     responsive: true,
                     margin: 0,
-                    // maintainAspectRatio: false,
                     legend: {
                         responsive: true,
                         display: false,
                         position: 'left',
-                        // onClick: null
-                        labels: {
-                            boxWidth: 10,
-                            fontSize: 12,
-                            padding: 2,
-                            fontColor: '#f5deb3',
-                        }
+                        },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                
+                                return data.labels[tooltipItem.index] + ': $' + data.datasets[0].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            },
+                        },
                     },
                 }
             }))

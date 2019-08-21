@@ -1,5 +1,5 @@
 var states = [],
-    selectedStates = ["CA", "NY", "GA"];
+    selectedStates = [];
 
 function drawMap() {
 
@@ -44,15 +44,11 @@ function drawMap() {
 var updateFunction = drawMap();
 
 function selectState(d) {
-    if (selectedStates.includes(d.name) ) {
-        selectedStates = selectedStates.filter(el => {
-            if (el !== d.name) {
-                return el
-            }
-        })
-    } else {
-        selectedStates.push(d.name);
-    }
+    selectedStates.includes(d.name) ?
+    selectedStates = selectedStates.filter(el => el !== d.name) 
+    : selectedStates.push(d.name);
+    
+    if ( selectedStates.length > 3 ) { selectedStates.shift() }
      
     drawMap();
 }
