@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <link rel="stylesheet" type="text/css" href="sequences.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+</head>
+
+<body>
+    <div id="main">
+        <video class="vid" autoplay loop muted>
+            <source src="videos/_Eagle.mp4" type="video/mp4">
+            <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
+        </video>
+        <div class="main-content">
+            <div class="header">
+                <div class="header-left">FREEDOM SPENDING</div>
+                <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
+            </div>
+            <div class="radar-container">
+                <canvas id="radar" style="opacity: 0.7; display: none;"></canvas>
+                <div id="radar-controls" style="display: none;">
+                    <button class="state-select-button" onclick="displayMap()">Select States</button>
+
+                    <button class="button" onclick="clicked()">Compare</button>
+                </div>
+            </div>
+            <div class="left-right-container">
+                <div class="left">
+                    <div id="left-section-1">
+                        <!-- <div class="left-top"></div> -->
+                        <div class="selection-container">
+                            <div class="dropdown">
+                                <button class="dropbtn">Fiscal year</button>
+                                <div class="dropdown-content">
+                                    <a onclick="selectFiscalYear('2019')">2019</a>
+                                    <a onclick="selectFiscalYear('2018')">2018</a>
+                                    <a onclick="selectFiscalYear('2017')">2017</a>
+                                </div>
+                            </div>
+                            <button class="button" onclick="freedom()"><span style="color:red;">U</span><span
+                                    class="following" style="padding-right: 1px;">nited</span><span
+                                    style="color:white">S</span><span class="following">tates</span><span class="of">of
+                                </span><span style="color:blue">A</span><span class="following"
+                                    style="letter-spacing: -.43em; padding-left: 1px;">merica</span></button>
+                        </div>
+                        <div id="left-middle" class="left-middle"></div>
+                        <!-- <div class="left-bottom"></div> -->
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-top: 8vh;"></div>
+                    <svg id="d3-block-map" style="opacity: 0.7; display: none;" width="960" height="550"></svg>
+                </div>
+                <div class="right">
+                    <div id="visualizer-container">
+                        <!-- <div class="visualizer"> -->
+                        <button onclick="switchGraph()" class="switch">in production</button>
+                        <!-- <svg class="piechart" ></svg> -->
+                        <canvas id="circle" style="opacity: 0.7;"></canvas>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer">I'm one
+                loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog
+                footer :)</div>
+        </div>
+    </div>
+
+    <meta charset="utf-8">
+
+
+    <script id="grid" type="text/plain">
+                                  ME
+                   WI          VT NH
+    WA ID MT ND MN IL MI    NY MA
+    OR NV WY SD IA IN OH PA NJ CT RI
+    CA UT CO NE MO KY WV VA MD DE
+       AZ NM KS AR TN NC SC
+             OK LA MS AL GA
+    HI AK    TX             FL
+    </script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="src/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src='./src/index.js'></script>
+    <script src='./src/spinner.js'></script>
+    <script src='./src/another.js'></script>
+    <script src='./src/state_spending.js'></script>
+    <script>
+        function clicked() {
+            displayMap()
+            compare()
+        }
+    </script>
+    <script>
+        function displayMap() {
+            if (document.getElementById("d3-block-map").style.display === "none") {
+                document.getElementById("d3-block-map").style.display = "block";
+                document.getElementById("radar").style.display = "none";
+                // document.getElementById("main").style.opacity = "0.2"
+                // document.getElementById("radar-controls").style.opacity = "0.7"
+            } else {
+                document.getElementById("d3-block-map").style.display = "none";
+                document.getElementById("radar").style.display = "block";
+                // document.getElementById("main").style.opacity = ""
+                // documemt.getElementById("main").style.opacity = ""
+            }
+        }
+    </script>
+    <script>
+        function switchGraph() {
+            if (document.getElementById("circle").style.display === "none") {
+                document.getElementById("radar").style.display = "none";
+                document.getElementById("circle").style.display = "block";
+                document.getElementById("d3-block-map").style.display = "none";
+                document.getElementById("radar-controls").style.display = "none";
+                document.getElementById("left-section-1").style.display = "block";
+            } else {
+                document.getElementById("circle").style.display = "none";
+                document.getElementById("radar").style.display = "block";
+                document.getElementById("left-section-1").style.display = "none";
+                document.getElementById("radar-controls").style.display = "block";
+            }
+            d3.select("radar").transition().style("-webkit-animation", "chartjs-render-animation 0.001s;")
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- graveyard -->
+
+<!-- // document.getElementById("visualizer-container").style.display = "none";
+// document.getElementById("visualizer-container").style.display = "block";
+// document.getElementById("circle").className = document.getElementById("circle").className + "chartjs-render-monitor"
+// document.getElementById("radar").className = "";
+// element = document.getElementById("circle");
+// element.addEventListener("click", function (e) {
+// e.preventDefault;
+// element.classList.remove("chartjs-render-monitor");
+// void element.offsetWidth;
+// element.classList.add("chartjs-render-monitor");
+// }, false); -->
+
+
+
+
+<!-- radar dropdown -->
+
+<!-- <div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState1('CA')">California</a>
+        <a onclick="selectState1('NY')">New York</a>
+        <a onclick="selectState1('GA')">Georgia</a>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState2('CA')">California</a>
+        <a onclick="selectState2('NY')">New York</a>
+        <a onclick="selectState2('GA')">Georgia</a>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState3('CA')">California</a>
+        <a onclick="selectState3('NY')">New York</a>
+        <a onclick="selectState3('GA')">Georgia</a>
+    </div>
+</div> -->
+
+<!-- radar dropdown -->

@@ -3,64 +3,80 @@
 
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
-    <link rel="stylesheet" type="text/css" href="sequences.css" /> -->
+    <!-- <script src='./src/spinner.js'></script> -->
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
 </head>
 
 <body>
-    <div id="main">
-        <video class="vid" autoplay loop muted>
-            <source src="videos/_Eagle.mp4" type="video/mp4">
-            <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
-        </video>
-        <div class="main-content">
-            <div class="header">
-                <div class="header-left">FREEDOM SPENDING</div>
-                <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
-            </div>
-            <div class="radar-container">
-                <canvas id="radar" style="opacity: 0.7; display: none;"></canvas>
-            <div id="radar-controls" style="display: none;">
-                <button class="state-select-button" onclick="displayMap()">Select States</button>
-                
-                <button class="button" onclick="clicked()">Compare</button>
-            </div>
-            </div>
-            <div class="left-right-container">
-                <div class="left">
-                    <div id="left-section-1">
-                        <!-- <div class="left-top"></div> -->
-                        <div class="selection-container">
-                            <div class="dropdown">
-                                <button class="dropbtn">Fiscal year</button>
-                                <div class="dropdown-content">
-                                    <a onclick="selectFiscalYear('2019')">2019</a>
-                                    <a onclick="selectFiscalYear('2018')">2018</a>
-                                    <a onclick="selectFiscalYear('2017')">2017</a>
+    <div id="main" id="page1">
+        <div class="header">
+                        <div class="header-left">FREEDOM SPENDING</div>
+                        <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
+                    </div>
+        <div class="docScroller">
+            <div class="page">
+                <video class="vid" autoplay loop muted>
+                    <source src="videos/_Eagle.mp4" type="video/mp4">
+                    <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
+                </video>
+                <div class="main-content">
+                    <button class="scroll-buttons" onclick="scrollIt('#page2')">Click Me to Smooth Scroll</button>
+                    <div class="left-right-container">
+                        <div class="left">
+                            <div id="left-section-1">
+                                <div class="selection-container">
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Fiscal year</button>
+                                        <div class="dropdown-content">
+                                            <a onclick="selectFiscalYear('2019')">2019</a>
+                                            <a onclick="selectFiscalYear('2018')">2018</a>
+                                            <a onclick="selectFiscalYear('2017')">2017</a>
+                                        </div>
+                                    </div>
+                                    <button class="button" onclick="freedom()"><span style="color:red;">U</span><span class="following" style="padding-right: 1px;">nited</span><span style="color:white">S</span><span class="following">tates</span><span class="of">of </span><span style="color:blue">A</span><span class="following" style="letter-spacing: -.43em; padding-left: 1px;">merica</span></button>
                                 </div>
+                                <div id="left-middle" class="left-middle"></div>
                             </div>
-                            <button class="button" onclick="freedom()"><span style="color:red;">U</span><span class="following" style="padding-right: 1px;">nited</span><span style="color:white">S</span><span class="following">tates</span><span class="of">of </span><span style="color:blue">A</span><span class="following" style="letter-spacing: -.43em; padding-left: 1px;">merica</span></button>
                         </div>
-                        <div id="left-middle" class="left-middle"></div>
-                        <!-- <div class="left-bottom"></div> -->
-                    </div>
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-top: 8vh;"></div>
-                    <svg id="d3-block-map" style="opacity: 0.7; display: none;" width="960" height="550"></svg>
-                </div>
-                <div class="right">
-                    <div id="visualizer-container">
-                        <!-- <div class="visualizer"> -->
-                            <button onclick="switchGraph()" class="switch">in production</button>
-                            <!-- <svg class="piechart" ></svg> -->
-                            <canvas id="circle" style="opacity: 0.7;"></canvas>
-                        <!-- </div> -->
+                        <div class="right">
+                            <div id="visualizer-container">
+                                    <canvas id="circle" style="opacity: 0.7;"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">I'm one loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog footer :)</div>
+
+            <div class="page" id="page2">
+                <div class="main-content">
+                    <button class="left-scroll-buttons" onclick="scrollIt('#page2')">Click Me to Smooth Scroll</button>
+                    <button class="scroll-buttons" onclick="scrollIt('#page3')">Click Me to Smooth Scroll</button>
+                    <div class="radar-container">
+                        <div id="radar-controls">
+                            <button class="compare-button" onclick="clicked()">Compare</button>
+                        </div>
+                    </div>
+                    <div class="left-right-container">
+                        <div style="width: 100%; text-align: center;">
+                            <div style="margin-top: 8vh;"></div>
+                            <svg id="d3-block-map" style="opacity: 0.7; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" width="960" height="550"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page3">
+                <div class="main-content" style="height: 95%; text-align: center;">
+                    <button class="left-scroll-buttons" onclick="scrollIt('#page2')">Click Me to Smooth Scroll</button>
+                    <div class="radar-container" style="display: inline-block; padding-top: 25px;">
+                        <canvas id="radar" style="opacity: 0.7;"></canvas>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="footer">I'm one
+                        loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog
+                        footer :)</div>
         </div>
     </div>
 
@@ -81,31 +97,70 @@
     <script src="src/map.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src='./src/index.js'></script>
-    <script src='./src/spinner.js'></script>
+
     <script src='./src/another.js'></script>
     <script src='./src/state_spending.js'></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 'slow', function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script> -->
+    <script>
+        
+        function scrollIt(page) {
+
+            
+            document.querySelector(page).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+
+        }
+    </script>
     <script>
         function clicked() {
-            displayMap()
+            
+            // displayMap()
             compare()
         }
     </script>
     <script>
-        function displayMap() {
-            if (document.getElementById("d3-block-map").style.display === "none") {
-                document.getElementById("d3-block-map").style.display = "block";
-                document.getElementById("radar").style.display = "none";
-                // document.getElementById("main").style.opacity = "0.2"
-                // document.getElementById("radar-controls").style.opacity = "0.7"
-            } else {
-                document.getElementById("d3-block-map").style.display = "none";
-                document.getElementById("radar").style.display = "block";
-                // document.getElementById("main").style.opacity = ""
-                // documemt.getElementById("main").style.opacity = ""
-            }
-        }
+        // function displayMap() {
+        //     if (document.getElementById("d3-block-map").style.display === "none") {
+        //         document.getElementById("d3-block-map").style.display = "block";
+        //         document.getElementById("radar").style.display = "none";
+        //         // document.getElementById("main").style.opacity = "0.2"
+        //         // document.getElementById("radar-controls").style.opacity = "0.7"
+        //     } else {
+        //         document.getElementById("d3-block-map").style.display = "none";
+        //         document.getElementById("radar").style.display = "block";
+        //         // document.getElementById("main").style.opacity = ""
+        //         // documemt.getElementById("main").style.opacity = ""
+        //     }
+        // }
     </script>
-    <script>
+    <!-- <script>
         function switchGraph() {
             if (document.getElementById("circle").style.display === "none") {
                 document.getElementById("radar").style.display = "none";
@@ -120,7 +175,7 @@
                 document.getElementById("radar-controls").style.display = "block";
             }
             d3.select("radar").transition().style("-webkit-animation", "chartjs-render-animation 0.001s;")
-        }
+        } -->
     </script>
 </body>
 
