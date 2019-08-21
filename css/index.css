@@ -396,14 +396,53 @@ body {
 
 .left-scroll-buttons {
     position: absolute;
+    left: 5px;
+    top: 50%;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    transform: rotate(135deg);
+    z-index: 100000;
+    height: 15px;
+    width: 15px;
+    border-color: aliceblue;
+    animation: left-scroll-bounce 1.5s infinite;
 }
 
 .scroll-buttons {
     position: absolute;
-    right: 0
+    right: 5px;
+    top: 50%;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    transform: rotate(-45deg);
+    z-index: 100000;
+    height: 15px;
+    width: 15px;
+    border-color: aliceblue;
+    animation: scroll-bounce 1.5s infinite;
 }
 
 .compare-button {
     position: absolute;
     left: 200px;
+}
+
+@keyframes scroll-bounce {
+  from {right: 5px;}
+  to {right: 15px;}
+}
+
+@keyframes left-scroll-bounce {
+  from {left: 5px;}
+  to {left: 15px;}
 }
