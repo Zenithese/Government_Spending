@@ -2,7 +2,6 @@ var states = [],
     selectedStates = [];
 
 function drawMap() {
-
     d3.select("#grid").text().split("\n").forEach(function (line, i) {
         var re = /\w+/g, m;
         while (m = re.exec(line)) states.push({
@@ -18,7 +17,7 @@ function drawMap() {
         height = +svg.attr("height");
 
     var gridWidth = d3.max(states, function (d) { return d.x; }) + 1,
-        gridHeight = d3.max(states, function (d) { return d.y; }) + 1,
+        gridHeight = d3.max(states, function (d) { return d.y; }) + 1;
         cellSize = 60;
 
     var state = svg.append("g")
@@ -31,24 +30,105 @@ function drawMap() {
         .on("click", selectState);
 
     state.append("rect")
-        .attr("x", -cellSize / 2)
-        .attr("y", -cellSize / 2)
-        .attr("width", cellSize - 1)
-        .attr("height", cellSize - 1);
+        .attr("x", -cellSize / 2 )
+        .attr("y", -cellSize / 2 )
+        .attr("width", cellSize - 1 )
+        .attr("height", cellSize - 1 );
 
     state.append("text")
         .attr("dy", ".35em")
         .text(function (d) { return d.name; });
 }
 
-var updateFunction = drawMap();
+    var updateFunction = drawMap();
 
-function selectState(d) {
-    selectedStates.includes(d.name) ?
-    selectedStates = selectedStates.filter(el => el !== d.name) 
-    : selectedStates.push(d.name);
+    let stateDefault = 0;
+    let perCapitaDefault = 0;
+    let populationDefault = 0;
+    let medianIncomeDefault = 0;
+
+    let floor = false;
+
+    function floorOrCeiling() {
+        console.log("hi")
+        floor = !floor
+        displayQualified();
+    }
     
-    if ( selectedStates.length > 3 ) { selectedStates.shift() }
-     
+function selectState(d) {
+    selectedStates = [d.name];
+    slider.value = statesData[d.name].total_prime_amount;
+    output.innerHTML = '$' + slider.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    slider2.value = statesData[d.name].award_amount_per_capita;
+    output2.innerHTML = '$' + slider2.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    slider3.value = statesData[d.name].population;
+    output3.innerHTML = slider3.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    slider4.value = statesData[d.name].median_household_income;
+    output4.innerHTML = '$' + slider4.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    stateDefault = statesData[d.name].total_prime_amount;
+    perCapitaDefault = statesData[d.name].award_amount_per_capita;
+    populationDefault = statesData[d.name].population;
+    medianIncomeDefault = statesData[d.name].median_household_income;
+    drawMap();
+}
+
+function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaDefault, populationValue = populationDefault, medianIncomeValue = medianIncomeDefault, category = 'total_prime_amount', category2 = 'award_amount_per_capita', category3 = 'population', category4 = 'median_household_income') {
+    stateDefault = stateValue;
+    perCapitaDefault = perCapitaValue;
+    populationDefault = populationValue;
+    medianIncomeDefault = medianIncomeValue;
+    
+    if (floor) {
+        abbs.forEach(state => {
+            if (statesData[state][category] <= stateValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category2] <= perCapitaValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category3] <= populationValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category4] <= medianIncomeValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (  (statesData[state][category]  > stateValue
+                || statesData[state][category2] > perCapitaValue
+                || statesData[state][category3] > populationValue
+                || statesData[state][category4] > medianIncomeValue) && selectedStates.includes(state)) {
+                selectedStates = selectedStates.filter(selected => selected !== state)
+            }
+        });
+    } else {
+        abbs.forEach(state => {
+            if (statesData[state][category] >= stateValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category2] >= perCapitaValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category3] >= populationValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (statesData[state][category4] >= medianIncomeValue && !selectedStates.includes(state)) {
+                selectedStates.push(state)
+            } 
+
+            if (  (statesData[state][category]  < stateValue
+                || statesData[state][category2] < perCapitaValue
+                || statesData[state][category3] < populationValue
+                || statesData[state][category4] < medianIncomeValue) && selectedStates.includes(state)) {
+                selectedStates = selectedStates.filter(selected => selected !== state)
+            }
+        });
+    }
+
     drawMap();
 }

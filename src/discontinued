@@ -1,0 +1,507 @@
+//////////////state_spending.js////////////////////
+
+// let Environmental = []
+// let Education = []
+// let Health = []
+// let Defense = []
+// let States = [{}, {}, {}]
+
+// AbbToState = {
+//     "AK": "Alaska",
+//     "AL": "Alabama",
+//     "AZ": "Arizona",
+//     "AR": "Arkansas",
+//     "CA": "California",
+//     "CO": "Colorado",
+//     "CT": "Connecticut",
+//     "DE": "Delaware",
+//     "FL": "Florida",
+//     "GA": "Georgia",
+//     "HI": "Hawaii",
+//     "ID": "Idaho",
+//     "IL": "Illinois",
+//     "IN": "Indiana",
+//     "IA": "Iowa",
+//     "KS": "Kansas",
+//     "KY": "Kentucky",
+//     "LA": "Louisiana",
+//     "ME": "Maine",
+//     "MD": "Maryland",
+//     "MA": "Massachusetts",
+//     "MI": "Michigan",
+//     "MN": "Minnesota",
+//     "MS": "Mississippi",
+//     "MO": "Missouri",
+//     "MT": "Montana",
+//     "NH": "New Hampshire",
+//     "NE": "Nebraska",
+//     "NV": "Nevada",
+//     "NJ": "New Jersey",
+//     "NM": "New Mexico",
+//     "NY": "New York",
+//     "NC": "North Carolina",
+//     "ND": "North Dakota",
+//     "OH": "Ohio",
+//     "OK": "Oklahoma",
+//     "OR": "Oregon",
+//     "PA": "Pennsylvania",
+//     "RI": "Rhode Island",
+//     "SC": "South Carolina",
+//     "SD": "South Dakota",
+//     "TN": "Tennessee",
+//     "TX": "Texas",
+//     "UT": "Utah",
+//     "VT": "Vermont",
+//     "VA": "Virginia",
+//     "WA": "Washington",
+//     "WV": "West Virginia",
+//     "WI": "Wisconsin",
+//     "WY": "Wyoming"
+// }
+
+// // "DC": "11"
+// // "District of Columbia"
+// // "Puerto Rico"
+// // "Guam"
+// // "American Samoa"
+// // "U.S.Virgin Islands"
+// // "Northern Mariana Islands"
+
+// /////////////////////////category///////////////////////////////////////////////
+// function compare() {
+
+//     document.getElementById("spinner").style.display = ""
+//     document.getElementById("radar").style.display = "none";
+//     // document.getElementById("bubble").style.display = "none";
+//     promise5 = getData(`https://api.usaspending.gov/api/v2/recipient/state/${AbbToFips[selectedStates[0]]}`).then(data => {
+
+//         dataToRender = Object.assign(dataToRender, data)
+//         console.log(dataToRender)
+
+//     })
+
+//     promise6 = getData(`https://api.usaspending.gov/api/v2/recipient/state/${AbbToFips[selectedStates[1]]}`).then(data => {
+
+//         dataToRender2 = Object.assign(dataToRender2, data)
+
+//     })
+
+//     promise7 = getData(`https://api.usaspending.gov/api/v2/recipient/state/${AbbToFips[selectedStates[2]]}`).then(data => {
+
+//         dataToRender3 = Object.assign(dataToRender3, data)
+
+//     })
+
+//     setTimeout(() => {
+//         console.log(category)
+//         Promise.all([promise5, promise6, promise7]).then(
+//             ctx2 = document.getElementById("radar"),
+//             Chart.defaults.global.defaultFontColor = "aliceblue",
+//             chart = new Chart(ctx2, {
+//                 type: 'horizontalBar',
+//                 data: {
+//                     datasets: [
+//                         {
+//                             label: [dataToRender.name],
+//                             data: [dataToRender[category]],
+//                             backgroundColor: [
+//                                 'rgba(47, 79, 79, 0.7)',
+//                             ],
+//                             borderColor: [
+//                                 'rgb(47, 79, 79)',
+
+//                             ],
+//                             borderWidth: 3,
+//                             pointRadius: 4,
+//                             pointBorderColor: 'rgb(47, 79, 79)',
+//                             hoverBorderColor: [
+//                                 "black",
+//                                 "black"
+//                             ]
+//                         },
+//                         {
+//                             label: [dataToRender2.name],
+//                             data: [dataToRender2[category]],
+//                             backgroundColor: [
+//                                 'rgba(62, 223, 207, 0.7)',
+//                             ],
+//                             borderColor: [
+//                                 'rgb(47, 79, 79)',
+
+//                             ],
+//                             borderWidth: 3,
+//                             pointRadius: 4,
+//                             pointBorderColor: 'rgb(47, 79, 79)',
+//                             hoverBorderColor: [
+//                                 "black",
+//                                 "black"
+//                             ]
+//                         },
+//                         {
+//                             label: [dataToRender3.name],
+//                             data: [dataToRender3[category]],
+//                             backgroundColor: [
+//                                 'rgba(70, 130, 180, 0.7)',
+//                             ],
+//                             borderColor: [
+//                                 'rgb(47, 79, 79)',
+
+//                             ],
+//                             borderWidth: 3,
+//                             pointRadius: 4,
+//                             pointBorderColor: 'rgb(47, 79, 79)',
+//                             hoverBorderColor: [
+//                                 "black",
+//                                 "black"
+//                             ]
+//                         },
+//                     ],
+//                 },
+//                 // options: options
+//             }),
+
+//             // ctx3 = document.getElementById("bubble"),
+//             // chart = new Chart(ctx3, {
+//             //     type: 'bar',
+//             //     data: {
+//             //         datasets: [
+//             //             {
+//             //                 label: [dataToRender.name],
+//             //                 data: [{ x: dataToRender.award_amount_per_capita, y: 0, r:15}],
+
+//             //                 // Changes this dataset to become a line
+//             //                 type: 'bubble'
+//             //             },
+//             //             {
+//             //                 label: [dataToRender2.name],
+//             //                 data: [{ x: dataToRender2.award_amount_per_capita, y: 0, r: 15}],
+
+//             //                 // Changes this dataset to become a line
+//             //                 type: 'bubble'
+//             //             },
+//             //             {
+//             //                 label: [dataToRender3.name],
+//             //                 data: [{ x: dataToRender3.award_amount_per_capita, y: 0, r: 15}],
+
+//             //                 // Changes this dataset to become a line
+//             //                 type: 'bubble'
+//             //             },
+//             //         ],
+//             //     },
+//             //     // options: options
+//             // })
+//         )
+//         document.getElementById("spinner").style.display = "none"
+//         document.getElementById("radar").style.display = "block";
+//         // document.getElementById("bubble").style.display = "block";
+//     }, 5000)
+// }
+
+// // ${AbbToFips[selectedStates[0]]}
+
+
+
+
+// /////////////////////////geographgy-category////////////////////////////////////
+
+// // function compare() {
+// //     document.getElementById("spinner").style.display = ""
+// //     document.getElementById("radar").style.display = "none";
+// //     promise1 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
+// //         "scope": "place_of_performance",
+// //         "geo_layer": "state",
+// //         "geo_layer_filters": selectedStates,
+// //         "filters": {
+// //             "keywords": ['health'],
+// //             "time_period": [
+// //                 {
+// //                     "start_date": "2016-10-01",
+// //                     "end_date": "2017-09-30"
+// //                 }
+// //             ]
+
+// //         },
+// //         "subawards": false
+// //     }).then(data => {
+// //         // 
+// //         console.log(data)
+// //         data.results.forEach(element => {
+// //             Health.push(element.aggregated_amount)
+// //         });
+// //         Health.forEach((element, i) => {
+// //             States[i] = Object.assign(States[i], { "health": element })
+// //         });
+// //     })
+
+// //     promise2 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
+// //         "scope": "place_of_performance",
+// //         "geo_layer": "state",
+// //         "geo_layer_filters": selectedStates,
+// //         "filters": {
+// //             "keywords": ['environmental'],
+// //             "time_period": [
+// //                 {
+// //                     "start_date": "2016-10-01",
+// //                     "end_date": "2017-09-30"
+// //                 }
+// //             ]
+
+// //         },
+// //         "subawards": false
+// //     }).then(data => {
+// //         // 
+// //         console.log(data)
+// //         data.results.forEach(element => {
+// //             Environmental.push(element.aggregated_amount)
+// //         });
+// //         Environmental.forEach((element, i) => {
+// //             States[i] = Object.assign(States[i], { "environmental": element })
+// //         });
+// //     })
+
+// //     promise3 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
+// //         "scope": "place_of_performance",
+// //         "geo_layer": "state",
+// //         "geo_layer_filters": selectedStates,
+// //         "filters": {
+// //             "keywords": ['education'],
+// //             "time_period": [
+// //                 {
+// //                     "start_date": "2016-10-01",
+// //                     "end_date": "2017-09-30"
+// //                 }
+// //             ]
+
+// //         },
+// //         "subawards": false
+// //     }).then(data => {
+// //         // 
+// //         console.log(data)
+// //         data.results.forEach(element => {
+// //             Education.push(element.aggregated_amount)
+// //         });
+// //         Education.forEach((element, i) => {
+// //             States[i] = Object.assign(States[i], { "education": element })
+// //         });
+// //     })
+
+// //     promise4 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
+// //         "scope": "place_of_performance",
+// //         "geo_layer": "state",
+// //         "geo_layer_filters": selectedStates,
+// //         "filters": {
+// //             "keywords": ['defense'],
+// //             "time_period": [
+// //                 {
+// //                     "start_date": "2016-10-01",
+// //                     "end_date": "2017-09-30"
+// //                 }
+// //             ]
+
+// //         },
+// //         "subawards": false
+// //     }).then(data => {
+// //         // 
+// //         console.log(data)
+// //         data.results.forEach(element => {
+// //             Defense.push(element.aggregated_amount)
+// //         });
+// //         Defense.forEach((element, i) => {
+// //             States[i] = Object.assign(States[i], { "defense": element })
+// //         });
+// //     }).catch(error => {
+// //         console.log(error)
+// //     })
+
+// //     //////////////////////////////// Chart /////////////////////////////////////
+
+// //     setTimeout(() => {
+
+// //         Promise.all([promise1, promise2, promise3, promise4]).then(
+// //             ctx2 = document.getElementById("radar"),
+// //             Chart.defaults.global.defaultFontColor = "aliceblue",
+// //             chart = new Chart(ctx2, {
+// //                 type: 'line',
+// //                 data: {
+// //                     datasets: [
+// //                         {
+// //                             label: AbbToState[selectedStates[2]],
+// //                             data: Object.values(States[1]),
+// //                             backgroundColor: [
+// //                                 'rgba(47, 79, 79, 0.7)',
+// //                             ],
+// //                             borderColor: [
+// //                                 'rgb(47, 79, 79)',
+
+// //                             ],
+// //                             borderWidth: 3,
+// //                             pointRadius: 4,
+// //                             pointBorderColor: 'rgb(47, 79, 79)',
+// //                             hoverBorderColor: [
+// //                                 "black",
+// //                                 "black"
+// //                             ]
+// //                         },
+// //                         {
+// //                             label: AbbToState[selectedStates[1]],
+// //                             data: Object.values(States[2]),
+// //                             backgroundColor: [
+
+// //                                 'rgba(62, 223, 207, 0.7)',
+// //                             ],
+// //                             borderColor: [
+
+// //                                 'rgb(62, 223, 207)',
+// //                             ],
+// //                             borderWidth: 3,
+// //                             pointRadius: 4,
+// //                             pointBorderColor: 'rgb(62, 223, 207)',
+// //                             hoverBorderColor: [
+// //                                 "black",
+// //                                 "black"
+// //                             ]
+// //                         },
+// //                         {
+// //                             label: AbbToState[selectedStates[0]],
+// //                             data: Object.values(States[0]),
+// //                             backgroundColor: [
+// //                                 'rgba(70, 130, 180, 0.7)',
+// //                             ],
+// //                             borderColor: [
+// //                                 'rgb(70, 130, 180)',
+// //                             ],
+// //                             borderWidth: 3,
+// //                             pointRadius: 4,
+// //                             pointBorderColor: 'rgb(70, 130, 180)',
+// //                             hoverBorderColor: [
+// //                                 "black",
+// //                                 "black"
+// //                             ]
+// //                         }
+// //                     ],
+// //                     labels: Object.keys(States[0])
+// //                 },
+// //                 // options: {
+// //                 //     scale: {
+// //                 //         ticks: {
+// //                 //             suggestedMin: 50,
+// //                 //             suggestedMax: 100
+// //                 //         }
+// //                 //     }
+// //                 // }
+// //             })
+// //         )
+// //         // console.log(States)
+// //         document.getElementById("spinner").style.display = "none"
+// //         document.getElementById("radar").style.display = "block";
+// //     }, 5000)
+// // }
+
+///////////map.js/////////////
+
+// function selectState(d) {
+//     selectedStates.includes(d.name) ?
+//         selectedStates = selectedStates.filter(el => el !== d.name)
+//         : selectedStates.push(d.name);
+
+//     if (selectedStates.length > 3) { selectedStates.shift() }
+
+//     drawMap();
+// }
+
+/////////////state_spending.js///////////////
+
+// let statesData = {};
+
+// fips.map(fip => {
+
+//     fetch(`https://api.usaspending.gov/api/v2/recipient/state/${fip}`)
+//     .then(response => response.json())
+//     .then(data => { Object.assign(statesData, { [data.code]: data })})
+
+// })
+
+
+////////////////index.html////////////////
+
+{/* <div class="dropdown-category">
+    <button class="dropbtn-category" id="category">Category</button>
+    <div class="dropdown-category-content">
+        <a onclick="selectCategory('total_prime_amount')">Total Spending</a>
+        <a onclick="selectCategory('award_amount_per_capita')">Per Capita Spending</a>
+        <a onclick="selectCategory('median_household_income')">Median Income per Household</a>
+        <a onclick="selectCategory('population')">Population</a>
+    </div>
+</div> */}
+
+{/* <div class="header">
+    <div class="header-left">FREEDOM SPENDING</div>
+    <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
+    <div id="modal-container"></div>
+</div> */}
+
+{/* <div class="categories">
+    <a class="category" onclick="selectCategory('total_prime_amount')">Total Spending: <br /><input id="categoryRange" type="range" min="0" max="100000000000" value="0"><br />Value: <span id="demo"></span></a>
+        <a class="category" onclick="selectCategory('award_amount_per_capita')">Per Capita Spending: <br /><input id="categoryRange2" type="range" min="0" max="100000000000" value="0"><br />Value: <span id="demo2"></span></a>
+            <a class="category" onclick="selectCategory('population')">Population: <br /><input id="categoryRange3" type="range" min="0" max="1000000000000" value="0"><br />Value: <span id="demo3"></span></a>
+                <a class="category" onclick="selectCategory('median_household_income')">Median Income per Household: <br /><input id="categoryRange4" type="range" min="0" max="100000000000" value="0"><br />Value: <span id="demo4"></span></a>
+                    </div> */}
+
+{/* <div id="radar-controls">
+    <button class="compare-button" onclick="clicked()">Select Three States and Compare</button>
+    <label class="switch"><input onclick="floorOrCeiling()" type="checkbox"><span class="slider"></span></label>
+</div> */}
+
+//////////////////////////index.js//////////////////////////
+
+// postData('https://api.usaspending.gov/api/v2/search/spending_by_category', {
+//     "type": "budget_function",
+//     "filters": {
+//         "fy": "2018",
+//         "budget_function": code,
+//     }
+// }).then(data => {
+//     console.log(data)
+// }).catch(error => {
+//     console.log(error)
+// })
+
+// budget_function_titles = ["National Defense", "Medicare", "Social Security", "Health", "Income Security", "Net Interest", "General Government", "Veterans Benefits and Services", "International Affairs", "Education, Training, Employment, and Social Services", "Transportation", "Administration of Justice", "Natural Resources and Environment", "Agriculture", "Community and Regional Development", "General Science, Space, and Technology", "Commerce and Housing Credit", "Energy", "Governmental Receipts"]
+// budget_function_codes = ["050", "570", "650", "550", "600", "900", "800", "700", "150", "500", "400", "750", "300", "350", "450", "250", "370", "270", "000"]
+// budget_function_titles = ["Administration of Justice", "Agriculture", "Commerce and Housing Credit", "Community and Regional Development", "Education, Employment, and Social Services", "Energy", "General Government", "General Science, Space, and Technology", "Governmental Receipts", "Health", "Income Security", "International Affairs", "Medicare", "Multiple functions", "National Defense", "Natural Resources and Environment", "Net Interest", "Social Security", "Transportation", "Veterans Benefits and Services"]
+// budget_function_codes = ["750", "350", "370", "450", "500", "270", "800", "250", "000", "550", "600", "150", "570", "990", "050", "300", "900", "650", "400", "700"]
+
+//     'rgb(75, 75, 75)',
+//     'rgb(75, 0, 0)',
+//     'rgb(0, 0, 105)',
+//     'rgb(105, 105, 105)',
+//     'rgb(105, 0, 0)',
+//     'rgb(0, 0, 135)',
+//     'rgb(135, 135, 135)',
+//     'rgb(135, 0, 0)',
+//     'rgb(0, 0, 165)',
+//     'rgb(165, 165, 165)',
+//     'rgb(165, 0, 0)',
+//     'rgb(0, 0, 195)',
+//     'rgb(195, 195, 195)',
+//     'rgb(195, 0, 0)',
+//     'rgb(0, 0, 225)',
+//     'rgb(225, 225, 225)',
+//     'rgb(225, 0, 0)',
+//     'rgb(0, 0, 255)',
+//     'rgb(255, 255, 255)',
+//     'rgb(255, 0, 0)',
+
+////////////////state_spending.js////////////////
+
+// let dataToRender = {}
+// let dataToRender2 = {}
+// let dataToRender3 = {}
+
+// let total = 0;
+
+// setTimeout(() => {
+    // abbs.forEach(abb => {
+    //     total += statesData[abb][category]
+    // })
+// }, 1300)

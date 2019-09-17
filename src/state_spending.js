@@ -1,258 +1,131 @@
-let Environmental = []
-let Education = []
-let Health = []
-let Defense = []
-let States = [{}, {}, {}]
+let abbs = [
+    "AK",
+    "AL",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NH",
+    "NE",
+    "NV",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY"
+]
 
-AbbToState = {"AK": "Alaska",
-    "AL": "Alabama",
-    "AZ": "Arizona",
-    "AR": "Arkansas",
-    "CA": "California",
-    "CO": "Colorado",
-    "CT": "Connecticut",
-    "DE": "Delaware",
-    "FL": "Florida",
-    "GA": "Georgia",
-    "HI": "Hawaii",
-    "ID": "Idaho",
-    "IL": "Illinois",
-    "IN": "Indiana",
-    "IA": "Iowa",
-    "KS": "Kansas",
-    "KY": "Kentucky",
-    "LA": "Louisiana",
-    "ME": "Maine",
-    "MD": "Maryland",
-    "MA": "Massachusetts",
-    "MI": "Michigan",
-    "MN": "Minnesota",
-    "MS": "Mississippi",
-    "MO": "Missouri",
-    "MT": "Montana",
-    "NH": "New Hampshire",
-    "NE": "Nebraska",
-    "NV": "Nevada",
-    "NJ": "New Jersey",
-    "NM": "New Mexico",
-    "NY": "New York",
-    "NC": "North Carolina",
-    "ND": "North Dakota",
-    "OH": "Ohio",
-    "OK": "Oklahoma",
-    "OR": "Oregon",
-    "PA": "Pennsylvania",
-    "RI": "Rhode Island",
-    "SC": "South Carolina",
-    "SD": "South Dakota",
-    "TN": "Tennessee",
-    "TX": "Texas",
-    "UT": "Utah",
-    "VT": "Vermont",
-    "VA": "Virginia",
-    "WA": "Washington",
-    "WV": "West Virginia",
-    "WI": "Wisconsin",
-    "WY": "Wyoming"
-}
+let fips = [
+    "02",
+    "01",
+    "04",
+    "05",
+    "06",
+    "08",
+    "09",
+    "10",
+    "12",
+    "13",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "33",
+    "31",
+    "32",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "53",
+    "54",
+    "55",
+    "56"
+]
 
-// "District of Columbia"
-// "Puerto Rico"
-// "Guam"
-// "American Samoa"
-// "U.S.Virgin Islands"
-// "Northern Mariana Islands"
+let statesData = {};
+let maxState = 10;
+let maxCapita = 10;
+let maxPop = 10;
+let maxIncome = 10;
 
-/////////////////////////api request////////////////////////////////////////////
-
-function compare() {
-    document.getElementById("radar").style.display = "none";
-    promise1 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-        "scope": "place_of_performance",
-        "geo_layer": "state",
-        "geo_layer_filters": selectedStates,
-        "filters": {
-            "keywords": ['health'],
-            "time_period": [
-                {
-                    "start_date": "2016-10-01",
-                    "end_date": "2017-09-30"
-                }
-            ]
-
-        },
-        "subawards": false
-    }).then(data => {
-        // 
-        console.log(data)
-        data.results.forEach(element => {
-            Health.push(element.aggregated_amount)
-        });
-        Health.forEach((element, i) => {
-            States[i] = Object.assign(States[i], { "health": element })
-        });
-    })
-
-    promise2 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-        "scope": "place_of_performance",
-        "geo_layer": "state",
-        "geo_layer_filters": selectedStates,
-        "filters": {
-            "keywords": ['environmental'],
-            "time_period": [
-                {
-                    "start_date": "2016-10-01",
-                    "end_date": "2017-09-30"
-                }
-            ]
-
-        },
-        "subawards": false
-    }).then(data => {
-        // 
-        console.log(data)
-        data.results.forEach(element => {
-            Environmental.push(element.aggregated_amount)
-        });
-        Environmental.forEach((element, i) => {
-            States[i] = Object.assign(States[i], { "environmental": element })
-        });
-    })
-
-    promise3 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-        "scope": "place_of_performance",
-        "geo_layer": "state",
-        "geo_layer_filters": selectedStates,
-        "filters": {
-            "keywords": ['education'],
-            "time_period": [
-                {
-                    "start_date": "2016-10-01",
-                    "end_date": "2017-09-30"
-                }
-            ]
-
-        },
-        "subawards": false
-    }).then(data => {
-        // 
-        console.log(data)
-        data.results.forEach(element => {
-            Education.push(element.aggregated_amount)
-        });
-        Education.forEach((element, i) => {
-            States[i] = Object.assign(States[i], { "education": element })
-        });
-    })
-
-    promise4 = postData('https://api.usaspending.gov/api/v2/search/spending_by_geography/', {
-        "scope": "place_of_performance",
-        "geo_layer": "state",
-        "geo_layer_filters": selectedStates,
-        "filters": {
-            "keywords": ['defense'],
-            "time_period": [
-                {
-                    "start_date": "2016-10-01",
-                    "end_date": "2017-09-30"
-                }
-            ]
-
-        },
-        "subawards": false
-    }).then(data => {
-        // 
-        console.log(data)
-        data.results.forEach(element => {
-            Defense.push(element.aggregated_amount)
-        });
-        Defense.forEach((element, i) => {
-            States[i] = Object.assign(States[i], { "defense": element })
-        });
-    }).catch(error => {
-        console.log(error)
-    })
-
-    //////////////////////////////// Chart /////////////////////////////////////
-
-    setTimeout(() => {
+fips.map(fip => {
+    
+    getData(`https://api.usaspending.gov/api/v2/recipient/state/${fip}`).then(data => {
         
-        Promise.all([promise1, promise2, promise3, promise4]).then(
-            ctx2 = document.getElementById("radar"),
-            Chart.defaults.global.defaultFontColor = "aliceblue",
-            chart = new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    datasets: [
-                        {
-                            label: AbbToState[selectedStates[2]],
-                            data: Object.values(States[1]),
-                            backgroundColor: [
-                                'rgba(47, 79, 79, 0.7)',
-                            ],
-                            borderColor: [
-                                'rgb(47, 79, 79)',
+        Object.assign(statesData, { [data.code]: data })
+        if (maxState < data.total_prime_amount) { maxState = data.total_prime_amount};
+        if (maxCapita < data.award_amount_per_capita) { maxCapita = data.award_amount_per_capita };
+        if (maxPop < data.population) { maxPop = data.population };
+        if (maxIncome < data.median_household_income) { maxIncome = data.median_household_income};
+    })
 
-                            ],
-                            borderWidth: 3,
-                            pointRadius: 4,
-                            pointBorderColor: 'rgb(47, 79, 79)',
-                            hoverBorderColor: [
-                                "black",
-                                "black"
-                            ]
-                        },
-                        {
-                            label: AbbToState[selectedStates[1]],
-                            data: Object.values(States[2]),
-                            backgroundColor: [
+})
 
-                                'rgba(62, 223, 207, 0.7)',
-                            ],
-                            borderColor: [
-
-                                'rgb(62, 223, 207)',
-                            ],
-                            borderWidth: 3,
-                            pointRadius: 4,
-                            pointBorderColor: 'rgb(62, 223, 207)',
-                            hoverBorderColor: [
-                                "black",
-                                "black"
-                            ]
-                        },
-                        {
-                            label: AbbToState[selectedStates[0]],
-                            data: Object.values(States[0]),
-                            backgroundColor: [
-                                'rgba(70, 130, 180, 0.7)',
-                            ],
-                            borderColor: [
-                                'rgb(70, 130, 180)',
-                            ],
-                            borderWidth: 3,
-                            pointRadius: 4,
-                            pointBorderColor: 'rgb(70, 130, 180)',
-                            hoverBorderColor: [
-                                "black",
-                                "black"
-                            ]
-                        }
-                    ],
-                    labels: Object.keys(States[0])
-                },
-                // options: {
-                //     scale: {
-                //         ticks: {
-                //             suggestedMin: 50,
-                //             suggestedMax: 100
-                //         }
-                //     }
-                // }
-            })
-        )
-        console.log(States)
-        document.getElementById("spinner").style.display = "none"
-        document.getElementById("radar").style.display = "block";
-    }, 5000)
-}
+setTimeout(() => {
+    slider.max = maxState;
+    slider2.max = maxCapita;
+    slider3.max = maxPop;
+    slider4.max = maxIncome;
+}, 1300)

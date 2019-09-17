@@ -3,18 +3,17 @@
 
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!-- <script src="numeral.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
-    <!-- <script src='./src/spinner.js'></script> -->
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <script src="https://kit.fontawesome.com/23417f50bc.js"></script>
 </head>
 
 <body>
+    
     <div id="main" id="page1">
+        
         <div class="header">
-                        <div class="header-left">FREEDOM SPENDING</div>
-                        <div class="header-right">Find me at the Australian at 11am on the 3rd Thursday of every month</div>
-                    </div>
+            <div id="modal-container"></div>
+        </div>
         <div class="docScroller">
             <div class="page" id="page1">
                 <video class="vid" autoplay loop muted>
@@ -28,7 +27,7 @@
                             <div id="left-section-1">
                                 <div class="selection-container">
                                     <div class="dropdown">
-                                        <button class="dropbtn">Fiscal year</button>
+                                        <button class="dropbtn" id="dropbtn">Fiscal year</button>
                                         <div class="dropdown-content">
                                             <a onclick="selectFiscalYear('2019')">2019</a>
                                             <a onclick="selectFiscalYear('2018')">2018</a>
@@ -52,11 +51,17 @@
             <div class="page" id="page2">
                 <div class="main-content">
                     <button class="left-scroll-buttons" onclick="scrollIt('#page1')"></button>
-                    <button class="scroll-buttons" onclick="scrollIt('#page3')"></button>
+                    <button id="scrollTo3" class="scroll-buttons" onclick="scrollIt('#page3')" style="display: none;"></button>
                     <div class="radar-container">
                         <div id="radar-controls">
-                            <button class="compare-button" onclick="clicked()">Select Three States and Compare</button>
+                            <label class="switch"><input onclick="floorOrCeiling()" type="checkbox"><span class="slider"></span></label>
                         </div>
+                    </div>
+                    <div class="categories">
+                        <a class="category">Total Spending: <br/><input id="categoryRange" type="range" min="0" max="100000000000" value="0"><br/>Value: <span id="demo"></span></a>
+                        <a class="category">Per Capita Spending: <br /><input id="categoryRange2" type="range" min="0" max="100000000000" value="0"><br />Value: <span id="demo2"></span></a>
+                        <a class="category">Population: <br /><input id="categoryRange3" type="range" min="0" max="1000000000000" value="0"><br />Value: <span id="demo3"></span></a>
+                        <a class="category">Median Income per Household: <br /><input id="categoryRange4" type="range" min="0" max="100000000000" value="0"><br />Value: <span id="demo4"></span></a>
                     </div>
                     <div class="left-right-container">
                         <div style="width: 100%; text-align: center;">
@@ -68,16 +73,7 @@
             </div>
 
             <div class="page" id="page3">
-                <div class="main-content" style="height: 95%; text-align: center;">
-                    <button class="left-scroll-buttons" onclick="scrollIt('#page2')"></button>
-                    <div class="radar-container" style="display: inline-block; padding-top: 25px;">
-                        <div id="spinner" class="lds-ripple" style="display: none;">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <canvas id="radar" style="opacity: 0.7;"></canvas>
-                    </div>
-                </div>
+                
             </div>
             </div>
             <div class="footer">I'm one
@@ -87,7 +83,6 @@
     </div>
 
     <meta charset="utf-8">
-   
     
     <script id="grid" type="text/plain">
                                   ME
@@ -100,39 +95,70 @@
     HI AK    TX             FL
     </script>
     <script src="//d3js.org/d3.v3.min.js"></script>
-    <script src="src/map.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src='./src/index.js'></script>
 
     <script src='./src/another.js'></script>
     <script src='./src/state_spending.js'></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
+    <script src='./src/modal.js'></script>
+    <script src="src/map.js"></script>
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
+    <script>
+        var slider = document.getElementById("categoryRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        slider.oninput = function () {
+            output.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-      // Store hash
-      var hash = this.hash;
+        }
+        slider.onchange = function () {
+            displayQualified(this.value, perCapitaDefault, populationDefault, medianIncomeDefault);
+        }
+    </script>
 
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 'slow', function(){
+    <script>
+        var slider2 = document.getElementById("categoryRange2");
+        var output2 = document.getElementById("demo2");
+        output2.innerHTML = slider2.value;
 
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
-</script> -->
+        slider2.oninput = function () {
+            output2.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        }
+        slider2.onchange = function () {
+            displayQualified(stateDefault, this.value, populationDefault, medianIncomeDefault);
+        }
+    </script>
+    
+    <script>
+        var slider3 = document.getElementById("categoryRange3");
+        var output3 = document.getElementById("demo3");
+        output3.innerHTML = slider3.value;
+
+        slider3.oninput = function () {
+            output3.innerHTML = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        }
+        slider3.onchange = function () {
+            displayQualified(stateDefault, perCapitaDefault, this.value, medianIncomeDefault);
+        }
+    </script>
+    
+    <script>
+        var slider4 = document.getElementById("categoryRange4");
+        var output4 = document.getElementById("demo4");
+        output4.innerHTML = slider4.value;
+
+        slider4.oninput = function () {
+            output4.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        }
+        slider4.onchange = function () {
+            displayQualified(stateDefault, perCapitaDefault, populationDefault, this.value);
+        }
+    </script>
+
     <script>
         
         function scrollIt(page) {
@@ -144,16 +170,17 @@ $(document).ready(function(){
 
         }
     </script>
+
     <script>
         function clicked() {
             
-            // displayMap()
+            comparePage()
             compare()
-            document.getElementById("spinner").style.display = ""
             scrollIt('#page3')
 
         }
     </script>
+
     <script>
         // function displayMap() {
         //     if (document.getElementById("d3-block-map").style.display === "none") {

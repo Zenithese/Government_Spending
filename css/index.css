@@ -87,15 +87,12 @@ body {
 }
 
 .header {
-    z-index: 10000;
-    /* position: absolute; */
+    z-index: 1;
     height: 30px;
-    /* padding-bottom: 30px; */
-    /* background-color: rgb(47, 79, 79); */
     color: aliceblue;
     text-shadow: 4px 4px 8px black;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .header-left {
@@ -240,8 +237,11 @@ body {
 }
 
 #radar-controls {
-    /* position: absolute; */
-    top: 0;
+    display: flex;
+    position: absolute;
+    left: 37px;
+    justify-content: space-around;
+    z-index: 1;
 }
 
 #circle:hover {
@@ -263,13 +263,12 @@ body {
     background-color: rgb(70, 130, 180);
     color: aliceblue;
     font-size: 12px;
-    /* border: none; */
     cursor: pointer;
     opacity: .7;
     border-width: 12px;
     position: relative;
     right: 14px;
-    /* left: 25px; */
+    min-width: 98.19px;
 }
 
 .dropdown {
@@ -308,6 +307,57 @@ body {
   background-color: red;
 }
 
+/* category dropdown */
+
+.dropbtn-category {
+    background-color: rgb(70, 130, 180);
+    color: aliceblue;
+    font-size: 12px;
+    /* border: none; */
+    cursor: pointer;
+    opacity: .7;
+    border-width: 12px;
+    position: relative;
+    right: 14px;
+    left: 25px;
+}
+
+.dropdown-category-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 98px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    left: 25px;
+    z-index: 1;
+    opacity: .9;
+}
+
+.dropdown-category {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-category-content a {
+  color: black;
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-category-content a:hover {background-color: #f1f1f1}
+
+.dropdown-category:hover .dropdown-category-content {
+  display: block;
+  overflow: scroll;
+  /* max-height: 120px; */
+}
+
+.dropdown-category:hover .dropbtn-category {
+  background-color: red;
+}
+
 /* D3 Block Map */
 
 .state:hover {
@@ -334,6 +384,35 @@ body {
 
 .state--selected text {
     fill: white;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 37px;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.category {
+    /* cursor: pointer; */
+}
+
+#categoryRange {
+    cursor: pointer;
+}
+
+#categoryRange2 {
+    cursor: pointer;
+}
+
+#categoryRange3 {
+    cursor: pointer;
+}
+
+#categoryRange4 {
+    cursor: pointer;
 }
 
 /* spinner */
@@ -418,7 +497,7 @@ body {
     outline: none;
     cursor: pointer;
     transform: rotate(135deg);
-    z-index: 100000;
+    z-index: 1;
     height: 15px;
     width: 15px;
     border-color: aliceblue;
@@ -437,7 +516,7 @@ body {
     outline: none;
     cursor: pointer;
     transform: rotate(-45deg);
-    z-index: 100000;
+    z-index: 1;
     height: 15px;
     width: 15px;
     border-color: aliceblue;
@@ -457,4 +536,172 @@ body {
 @keyframes left-scroll-bounce {
   from {left: 5px;}
   to {left: 15px;}
+}
+
+/* The Modal (background) */
+
+#myBtn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    font-family: monospace;
+    color: aliceblue;
+    text-shadow: 4px 4px 8px black;
+    font-size: 13px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    left: 14.5%;
+    bottom: 38.7%;
+    width: 70%;
+    /* height: 40vh; */
+    text-align: center;
+    /* background-color: #fefefe; */
+    /* background-image: url("https://images.unsplash.com/photo-1504350440606-81847d413a13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"); */
+    background-image: url("https://s3.envato.com/files/221129430/usa-flag-america.jpg");
+    /* background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/another-rough-old-and-worn-parchment-paper.jpg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+    color: white;
+    text-shadow: 1px 1px 8px black;
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    /* background-color: red; */
+    color: white;
+    text-shadow: 1px 1px 8px black;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    /* background-color: blue; */
+    color: white;
+    text-shadow: 1px 1px 8px black;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 38.7%; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 38.7%; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+#modal-container {
+    z-index: 2;
+}
+
+.radar-container h2{
+    margin: 0;
+    transform: translateY(-20px);
+}
+
+/* toggle switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
