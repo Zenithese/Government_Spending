@@ -27,6 +27,7 @@ category = "total_prime_amount"
 function selectFiscalYear(selectedFiscalYear) {
     fiscalYear = selectedFiscalYear;
     document.getElementById("dropbtn").innerHTML = `${selectedFiscalYear}`
+    freedom();
 }
 
 function selectCategory(selectedCategory = "total_prime_amount") {
