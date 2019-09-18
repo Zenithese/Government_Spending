@@ -36,8 +36,12 @@ function selectCategory(selectedCategory = "total_prime_amount") {
 
 
 //////////////////////////// API Request /////////////////////////////////
+let myPieChart = null;
 
 const freedom = () => {
+    document.getElementById("spinner").style.display = ""
+    document.getElementById("FSContent").style.display = "none";
+    if (myPieChart !== null) {myPieChart.destroy()}
     budget_function_titles = []
     budget_function_codes = []
     budget_function_amounts = []
@@ -69,6 +73,8 @@ const freedom = () => {
     ///////////////////////// Chart ////////////////////////////////
 
     setTimeout(() => {
+        document.getElementById("spinner").style.display = "none"
+        document.getElementById("FSContent").style.display = "";
         Promise.all([_promise1]).then(
             colors = [
                 // 'rgb(37, 97, 114)',

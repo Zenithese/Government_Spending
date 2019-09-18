@@ -22,12 +22,13 @@
                 </video>
                 <div class="main-content">
                     <button class="scroll-buttons" onclick="scrollIt('#page2')"></button>
-                    <div class="left-right-container">
+                    <div id="spinner" class="lds-ripple"><div></div><div></div></div>
+                    <div id="FSContent" class="left-right-container">
                         <div class="left">
                             <div id="left-section-1">
                                 <div class="selection-container">
                                     <div class="dropdown">
-                                        <button class="dropbtn" id="dropbtn">Fiscal year</button>
+                                        <button class="dropbtn" id="dropbtn">2018</button>
                                         <div class="dropdown-content">
                                             <a onclick="selectFiscalYear('2019')">2019</a>
                                             <a onclick="selectFiscalYear('2018')">2018</a>
