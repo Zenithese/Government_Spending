@@ -8,7 +8,7 @@ document.getElementById("modal-container").innerHTML = `<button id="myBtn">FREED
                                                                 <h2>Freedom Spending</h2>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>DATA act</p>
+                                                                <p>Digital Accountability and Transparency Act of 2014 (DATA Act) (P.L. 113-101)</p>
                                                                 <p>Types of spending</p>
                                                             </div>
                                                             <div class="modal-footer">
