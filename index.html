@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <div id="spark"></div>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("spark").innerHTML =
-`<head>
+<head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
     <script src="https://kit.fontawesome.com/23417f50bc.js"></script>
@@ -20,10 +16,7 @@
         </div>
         <div class="docScroller">
             <div class="page" id="page1">
-                <video class="vid" autoplay loop muted>
-                    <source src="videos/_Eagle.mp4" type="video/mp4">
-                    <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
-                </video>
+                <div id="background-video"></div>
                 <div class="main-content">
                     <button class="scroll-buttons" onclick="scrollIt('#page2')"></button>
                     <div id="spinner" class="lds-ripple"><div></div><div></div></div>
@@ -109,7 +102,7 @@
     <script src='./src/modal.js'></script>
     <script src="src/map.js"></script>
 
-    <script>
+    <!-- <script>
         var slider = document.getElementById("categoryRange");
         var output = document.getElementById("demo");
         output.innerHTML = slider.value;
@@ -185,8 +178,16 @@
 
         }
     </script>
-</body>`
-});
-</script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("background-video").innerHTML =
+            `<video class="vid" autoplay loop muted>
+                    <source src="videos/_Eagle.mp4" type="video/mp4">
+                    <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
+            </video>`
+        });
+    </script> -->
+</body>
 
 </html>

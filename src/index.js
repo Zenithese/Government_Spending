@@ -186,86 +186,86 @@ const freedom = () => {
 freedom();
 
 
-    // var slider = document.getElementById("categoryRange");
-    // var output = document.getElementById("demo");
-    // output.innerHTML = slider.value;
-    // slider.oninput = function () {
-    //     output.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var slider = document.getElementById("categoryRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+        output.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    // }
-    // slider.onchange = function () {
-    //     displayQualified(this.value, perCapitaDefault, populationDefault, medianIncomeDefault);
-    // }
+    }
+    slider.onchange = function () {
+        displayQualified(this.value, perCapitaDefault, populationDefault, medianIncomeDefault);
+    }
 
 
     
-    // var slider2 = document.getElementById("categoryRange2");
-    // var output2 = document.getElementById("demo2");
-    // output2.innerHTML = slider2.value;
+    var slider2 = document.getElementById("categoryRange2");
+    var output2 = document.getElementById("demo2");
+    output2.innerHTML = slider2.value;
 
-    // slider2.oninput = function () {
-    //     output2.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    slider2.oninput = function () {
+        output2.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    // }
-    // slider2.onchange = function () {
-    //     displayQualified(stateDefault, this.value, populationDefault, medianIncomeDefault);
-    // }
-
-
-
-    // var slider3 = document.getElementById("categoryRange3");
-    // var output3 = document.getElementById("demo3");
-    // output3.innerHTML = slider3.value;
-
-    // slider3.oninput = function () {
-    //     output3.innerHTML = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    // }
-    // slider3.onchange = function () {
-    //     displayQualified(stateDefault, perCapitaDefault, this.value, medianIncomeDefault);
-    // }
+    }
+    slider2.onchange = function () {
+        displayQualified(stateDefault, this.value, populationDefault, medianIncomeDefault);
+    }
 
 
 
-    // var slider4 = document.getElementById("categoryRange4");
-    // var output4 = document.getElementById("demo4");
-    // output4.innerHTML = slider4.value;
+    var slider3 = document.getElementById("categoryRange3");
+    var output3 = document.getElementById("demo3");
+    output3.innerHTML = slider3.value;
 
-    // slider4.oninput = function () {
-    //     output4.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    slider3.oninput = function () {
+        output3.innerHTML = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    // }
-    // slider4.onchange = function () {
-    //     displayQualified(stateDefault, perCapitaDefault, populationDefault, this.value);
-    // }
-
-
-
-
-    // function scrollIt(page) {
-
-    //     document.querySelector(page).scrollIntoView({
-    //         behavior: 'smooth'
-    //     });
-
-    // }
+    }
+    slider3.onchange = function () {
+        displayQualified(stateDefault, perCapitaDefault, this.value, medianIncomeDefault);
+    }
 
 
 
-    // function clicked() {
+    var slider4 = document.getElementById("categoryRange4");
+    var output4 = document.getElementById("demo4");
+    output4.innerHTML = slider4.value;
 
-    //     comparePage()
-    //     compare()
-    //     scrollIt('#page3')
+    slider4.oninput = function () {
+        output4.innerHTML = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    // }
+    }
+    slider4.onchange = function () {
+        displayQualified(stateDefault, perCapitaDefault, populationDefault, this.value);
+    }
 
 
 
-    // window.addEventListener('DOMContentLoaded', () => {
-    //     document.getElementById("background-video").innerHTML =
-    //     `<video class="vid" autoplay loop muted>
-    //             <source src="videos/_Eagle.mp4" type="video/mp4">
-    //             <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
-    //     </video>`
-    // });
+
+    function scrollIt(page) {
+
+        document.querySelector(page).scrollIntoView({
+            behavior: 'smooth'
+        });
+
+    }
+
+
+
+    function clicked() {
+
+        comparePage()
+        compare()
+        scrollIt('#page3')
+
+    }
+
+
+
+    window.addEventListener('load', () => {
+        document.getElementById("background-video").innerHTML =
+        `<video class="vid" autoplay loop muted>
+                <source src="videos/_Eagle.mp4" type="video/mp4">
+                <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
+        </video>`
+    });
