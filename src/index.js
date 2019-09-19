@@ -6,7 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
         </video>`
 });
 
-
 /////////////////api request functions////////////////////
 
 function getData(url) {
