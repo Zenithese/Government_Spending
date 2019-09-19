@@ -47,11 +47,10 @@ function drawMap() {
     let populationDefault = 0;
     let medianIncomeDefault = 0;
 
-    let Ceiling = false;
+    let ceiling = false;
 
     function floorOrCeiling() {
-        console.log("hi")
-        Ceiling = !Ceiling
+        ceiling = !ceiling
         displayQualified();
     }
     
@@ -78,7 +77,7 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
     populationDefault = populationValue;
     medianIncomeDefault = medianIncomeValue;
     
-    if (Ceiling) {
+    if (ceiling) {
         abbs.forEach(state => {
             if (statesData[state][category] <= stateValue && !selectedStates.includes(state)) {
                 selectedStates.push(state)
