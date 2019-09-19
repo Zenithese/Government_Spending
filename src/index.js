@@ -259,15 +259,3 @@ freedom();
         scrollIt('#page3')
 
     }
-
-
-
-    window.addEventListener('load', () => {
-        document.getElementById("background-video").innerHTML =
-        `<video class="vid" autoplay loop muted>
-                <source src="https://github.com/Zenithese/Government_Spending/raw/master/videos/_Eagle.mp4" type="video/mp4">
-                <source src="https://seedie.s3.amazonaws.com/_Eagle.mp4" type="video/mp4">
-        </video>`
-    });
-
-{/* <source src="videos/_Eagle.mp4" type="video/mp4"> */}
