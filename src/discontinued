@@ -505,3 +505,84 @@
     //     total += statesData[abb][category]
     // })
 // }, 1300)
+
+/////////////////index.html////////////////////
+
+ <!-- <script>
+        function displayMap() {
+            if (document.getElementById("d3-block-map").style.display === "none") {
+                document.getElementById("d3-block-map").style.display = "block";
+                document.getElementById("radar").style.display = "none";
+                // document.getElementById("main").style.opacity = "0.2"
+                // document.getElementById("radar-controls").style.opacity = "0.7"
+            } else {
+                document.getElementById("d3-block-map").style.display = "none";
+                document.getElementById("radar").style.display = "block";
+                // document.getElementById("main").style.opacity = ""
+                // documemt.getElementById("main").style.opacity = ""
+            }
+        }
+    </script>
+    <script>
+        function switchGraph() {
+            if (document.getElementById("circle").style.display === "none") {
+                document.getElementById("radar").style.display = "none";
+                document.getElementById("circle").style.display = "block";
+                document.getElementById("d3-block-map").style.display = "none";
+                document.getElementById("radar-controls").style.display = "none";
+                document.getElementById("left-section-1").style.display = "block";
+            } else {
+                document.getElementById("circle").style.display = "none";
+                document.getElementById("radar").style.display = "block";
+                document.getElementById("left-section-1").style.display = "none";
+                document.getElementById("radar-controls").style.display = "block";
+            }
+            d3.select("radar").transition().style("-webkit-animation", "chartjs-render-animation 0.001s;")
+        }
+    </script> -->
+
+    <!-- graveyard -->
+
+<!-- // document.getElementById("visualizer-container").style.display = "none";
+// document.getElementById("visualizer-container").style.display = "block";
+// document.getElementById("circle").className = document.getElementById("circle").className + "chartjs-render-monitor"
+// document.getElementById("radar").className = "";
+// element = document.getElementById("circle");
+// element.addEventListener("click", function (e) {
+// e.preventDefault;
+// element.classList.remove("chartjs-render-monitor");
+// void element.offsetWidth;
+// element.classList.add("chartjs-render-monitor");
+// }, false); -->
+
+
+
+
+<!-- radar dropdown -->
+
+<!-- <div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState1('CA')">California</a>
+        <a onclick="selectState1('NY')">New York</a>
+        <a onclick="selectState1('GA')">Georgia</a>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState2('CA')">California</a>
+        <a onclick="selectState2('NY')">New York</a>
+        <a onclick="selectState2('GA')">Georgia</a>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a onclick="selectState3('CA')">California</a>
+        <a onclick="selectState3('NY')">New York</a>
+        <a onclick="selectState3('GA')">Georgia</a>
+    </div>
+</div> -->
+
+<!-- radar dropdown -->
