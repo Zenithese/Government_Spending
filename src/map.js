@@ -47,11 +47,11 @@ function drawMap() {
     let populationDefault = 0;
     let medianIncomeDefault = 0;
 
-    let floor = false;
+    let Ceiling = false;
 
     function floorOrCeiling() {
         console.log("hi")
-        floor = !floor
+        Ceiling = !Ceiling
         displayQualified();
     }
     
@@ -78,7 +78,7 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
     populationDefault = populationValue;
     medianIncomeDefault = medianIncomeValue;
     
-    if (floor) {
+    if (Ceiling) {
         abbs.forEach(state => {
             if (statesData[state][category] <= stateValue && !selectedStates.includes(state)) {
                 selectedStates.push(state)
@@ -96,11 +96,16 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
                 selectedStates.push(state)
             } 
 
-            if (  (statesData[state][category]  > stateValue
-                || statesData[state][category2] > perCapitaValue
-                || statesData[state][category3] > populationValue
-                || statesData[state][category4] > medianIncomeValue) && selectedStates.includes(state)) {
-                selectedStates = selectedStates.filter(selected => selected !== state)
+            if ((Math.floor(statesData[state][category]) > stateValue
+                || Math.floor(statesData[state][category2]) > perCapitaValue
+                || Math.floor(statesData[state][category3]) > populationValue
+                || Math.floor(statesData[state][category4]) > medianIncomeValue) && selectedStates.includes(state)) {
+                // selectedStates = selectedStates.filter(selected => selected !== state)
+                for (let i = selectedStates.length - 1; i >= 0; i--) {
+                    if (selectedStates[i] === state) {
+                        selectedStates.splice(i, 1);
+                    }
+                }
             }
         });
     } else {
@@ -125,7 +130,12 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
                 || statesData[state][category2] < perCapitaValue
                 || statesData[state][category3] < populationValue
                 || statesData[state][category4] < medianIncomeValue) && selectedStates.includes(state)) {
-                selectedStates = selectedStates.filter(selected => selected !== state)
+                // selectedStates = selectedStates.filter(selected => selected !== state)
+                for (let i = selectedStates.length - 1; i >= 0; i--) {
+                    if (selectedStates[i] === state) {
+                        selectedStates.splice(i, 1);
+                    }
+                }
             }
         });
     }

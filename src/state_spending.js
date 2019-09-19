@@ -128,4 +128,4 @@ setTimeout(() => {
     slider2.max = maxCapita;
     slider3.max = maxPop;
     slider4.max = maxIncome;
-}, 1300)
+}, 1700)
