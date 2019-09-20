@@ -624,6 +624,7 @@ body {
 .modal::after {
   content: "";
   background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781");
+  /* background-image: url("https://www.recreoviral.com/wp-content/uploads/2015/11/LAS-MEJORES-FOTOS-JAMAS-TOMADAS-26.jpg"); */
   /* background-image: url("https://images.unsplash.com/photo-1504350440606-81847d413a13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"); */
   /* background-image: url("https://s3.envato.com/files/221129430/usa-flag-america.jpg"); */
   background-position: center;
@@ -644,8 +645,8 @@ body {
     left: 14.5%;
     bottom: 22.7%;
     width: 70%;
-    /* height: 40vh; */
-    text-align: center;
+    height: 60%;
+    /* text-align: center; */
     /* background-color: black; */
     /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
     background-position: center;
@@ -682,6 +683,7 @@ body {
     /* background-color: red; */
     color: floralwhite;
     text-shadow: 1px 1px 8px black;
+        text-align: center;
 }
 
 .modal-body {padding: 2px 16px;}
@@ -692,6 +694,7 @@ body {
     color: floralwhite;
     text-shadow: 1px 1px 8px black;
     font-weight: 100;
+        text-align: center;
 }
 
 .fa-angellist:before {
