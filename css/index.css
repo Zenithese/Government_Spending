@@ -713,35 +713,36 @@ body {
 
 /* Modal Content */
 .modal-content {
-  opacity: 2;
-    position: fixed;
-    left: 14.5%;
-    bottom: 22.7%;
-    width: 70%;
-    height: 60%;
-    /* text-align: center; */
-    /* background-color: black; */
-    /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s;
-    color: floralwhite;
-    font-size: 2.5vh;
-    /* text-shadow: 1px 1px 3px black; */
-    /* -webkit-text-stroke: 1px black; */
-    font-weight: bold;
+  opacity: .7;
+  position: fixed;
+  left: 14.5%;
+  bottom: 22.7%;
+  width: 70%;
+  height: 60%;
+  /* text-align: center; */
+  /* background-color: black; */
+  /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  color: floralwhite;
+  font-size: 2.5vh;
+  /* text-shadow: 1px 1px 3px black; */
+  /* -webkit-text-stroke: 1px black; */
+  font-weight: bold;
+  z-index: 3;
 }
 
 /* The Close Button */
 .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
