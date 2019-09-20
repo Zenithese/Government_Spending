@@ -83,7 +83,6 @@ body {
 }
 
 .header {
-    z-index: 1;
     height: 30px;
     color: aliceblue;
     text-shadow: 4px 4px 8px black;
@@ -226,14 +225,14 @@ body {
     flex-direction: column;
     position: absolute;
     left: 90%;
-    top: 10%;
+    top: 45%;
 }
 
 #radar-controls-header {
   opacity: .7;
   cursor: grab;
   padding: 4px;
-  z-index: 10;
+  z-index: 1;
   background-color: #2196F3;
   color: #fff;
   text-align: center;
@@ -358,6 +357,25 @@ body {
 
 /* D3 Block Map */
 
+#d3 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#d3-header {
+  /* font-size: xx-large; */
+  color: aliceblue;
+  position: absolute;
+  top: -27vh;
+  z-index: 1;
+  cursor: grab;
+}
+
+#d3-header:active {
+  cursor: grabbing;
+}
+
 .state:hover {
     cursor: pointer;
 }
@@ -378,6 +396,7 @@ body {
 
 .state--selected rect {
     fill: #9f4a6c;
+    /* fill: #2196F3; */
 }
 
 .state--selected text {
@@ -413,6 +432,59 @@ body {
 
 #categoryRange4 {
     cursor: pointer;
+}
+
+
+#a {
+  cursor: grab;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  z-index: 1;
+  width: 249.656px;
+}
+
+#a:active {
+  cursor: grabbing;
+}
+
+#b {
+  cursor: grab;
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  z-index: 1;
+  width: 249.656px;
+}
+
+#b:active {
+  cursor: grabbing;
+}
+
+#c {
+  cursor: grab;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 1;
+  width: 249.656px;
+}
+
+#c:active {
+  cursor: grabbing;
+}
+
+#d {
+  cursor: grab;
+  position: absolute;
+  left: 50%;
+  top: 63%;
+  z-index: 1;
+  width: 249.656px;
+}
+
+#d:active {
+  cursor: grabbing;
 }
 
 /* spinner */

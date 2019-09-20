@@ -60,15 +60,15 @@
                         </div>
                     </div>
                     <div class="categories">
-                        <a class="category">Total Spending: <span id="demo"></span> <br/><input id="categoryRange" type="range" min="0" max="100000000000" value="0"></a>
-                        <a class="category">Per Capita Spending: <span id="demo2"></span> <br /><input id="categoryRange2" type="range" min="0" max="100000000000" value="0"></a>
-                        <a class="category">Population: <span id="demo3"></span> <br /><input id="categoryRange3" type="range" min="0" max="1000000000000" value="0"></a>
-                        <a class="category">Median Household Income: <span id="demo4"></span> <br /><input id="categoryRange4" type="range" min="0" max="100000000000" value="0"></a>
+                        <div id="a"><a class="category"><div id="a-header">Total Spending: <span id="demo"></span></div> <br/><input id="categoryRange" type="range" min="0" max="100000000000" value="0"></a></div>
+                        <div id="b"><a class="category"><div id="b-header">Per Capita Spending: <span id="demo2"></span></div> <br /><input id="categoryRange2" type="range" min="0" max="100000000000" value="0"></a></div>
+                        <div id="c"><a class="category"><div id="c-header">Population: <span id="demo3"></span></div> <br /><input id="categoryRange3" type="range" min="0" max="1000000000000" value="0"></a></div>
+                        <div id="d"><a class="category"><div id="d-header">Median Household Income: <span id="demo4"></span></div> <br /><input id="categoryRange4" type="range" min="0" max="100000000000" value="0"></a></div>
                     </div>
                     <div class="left-right-container">
                         <div style="width: 100%; text-align: center;">
                             <div style="margin-top: 8vh;"></div>
-                            <svg id="d3-block-map" style="opacity: 0.7; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" width="960" height="550"></svg>
+                            <div id="d3"><div id="d3-header">&#x2191;<br/>&#x2190;&nbsp;&#x2192;<br/>&#x2193;</div><svg id="d3-block-map" style="opacity: 0.7; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" width="960" height="550"></svg></div>
                         </div>
                     </div>
                 </div>

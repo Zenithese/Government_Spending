@@ -143,6 +143,11 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
 }
 
 dragElement(document.getElementById("radar-controls"));
+dragElement(document.getElementById("a"));
+dragElement(document.getElementById("b"));
+dragElement(document.getElementById("c"));
+dragElement(document.getElementById("d"));
+dragElement(document.getElementById("d3"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
