@@ -395,8 +395,8 @@ body {
 }
 
 .state--selected rect {
-    fill: #9f4a6c;
-    /* fill: #2196F3; */
+    /* fill: #9f4a6c; */
+    fill: #2196F3;
 }
 
 .state--selected text {
