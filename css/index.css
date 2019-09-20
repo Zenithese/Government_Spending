@@ -367,7 +367,8 @@ body {
   /* font-size: xx-large; */
   color: aliceblue;
   position: absolute;
-  top: -27vh;
+  top: -275px;
+  left: -7px;
   z-index: 1;
   cursor: grab;
 }
