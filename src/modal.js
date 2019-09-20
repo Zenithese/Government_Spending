@@ -2,8 +2,7 @@ document.getElementById("modal-container").innerHTML = `<div class="header-left"
 
  
                                                     <div id="myModal" class="modal">
-
-                                                    <div class="modal-content">
+                                                        <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <span class="close">&times;</span>
                                                                 <h2>Freedom Spending</h2>

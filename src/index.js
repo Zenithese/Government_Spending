@@ -259,3 +259,4 @@ freedom();
         scrollIt('#page3')
 
     }
+

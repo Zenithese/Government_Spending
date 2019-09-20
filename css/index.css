@@ -197,12 +197,6 @@ body {
 
 }
 
-.switch {
-    position: absolute;
-    left: 25%;
-    top: 0;
-}
-
 .visualizer {
     background-color: rgb(62, 223, 207);
     width: 100%;
@@ -229,10 +223,24 @@ body {
 
 #radar-controls {
     display: flex;
+    flex-direction: column;
     position: absolute;
-    left: 37px;
-    justify-content: space-around;
-    z-index: 1;
+    left: 90%;
+    top: 10%;
+}
+
+#radar-controls-header {
+  opacity: .7;
+  cursor: grab;
+  padding: 4px;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+  text-align: center;
+}
+
+#radar-controls-header:active {
+  cursor: grabbing;
 }
 
 #circle:hover {
@@ -603,26 +611,43 @@ body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.7); 
   -webkit-animation-name: fadeIn; /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+  /* -webkit-text-stroke: 1px black; */
+  font-weight: bold;
+}
+
+.modal::after {
+  content: "";
+  background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781");
+  /* background-image: url("https://images.unsplash.com/photo-1504350440606-81847d413a13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"); */
+  /* background-image: url("https://s3.envato.com/files/221129430/usa-flag-america.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.27;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
 }
 
 /* Modal Content */
 .modal-content {
+  opacity: 2;
     position: fixed;
     left: 14.5%;
     bottom: 22.7%;
     width: 70%;
     /* height: 40vh; */
     text-align: center;
-    background-color: #fefefe;
-    background-image: url("https://images.unsplash.com/photo-1504350440606-81847d413a13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9");
-    /* background-image: url("https://s3.envato.com/files/221129430/usa-flag-america.jpg"); */
-    /* background-image: url("http://www.myfreetextures.com/wp-content/uploads/2011/06/another-rough-old-and-worn-parchment-paper.jpg"); */
+    /* background-color: black; */
+    /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -630,9 +655,11 @@ body {
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
     animation-duration: 0.4s;
-    color: white;
+    color: floralwhite;
     font-size: 24px;
-    text-shadow: 1px 1px 3px black;
+    /* text-shadow: 1px 1px 3px black; */
+    /* -webkit-text-stroke: 1px black; */
+    font-weight: bold;
 }
 
 /* The Close Button */
@@ -653,7 +680,7 @@ body {
 .modal-header {
     padding: 2px 16px;
     /* background-color: red; */
-    color: white;
+    color: floralwhite;
     text-shadow: 1px 1px 8px black;
 }
 
@@ -662,8 +689,21 @@ body {
 .modal-footer {
     padding: 2px 16px;
     /* background-color: blue; */
-    color: white;
+    color: floralwhite;
     text-shadow: 1px 1px 8px black;
+    font-weight: 100;
+}
+
+.fa-angellist:before {
+  color: floralwhite;
+}
+
+.fa-github:before {
+  color: floralwhite;
+}
+
+.fa-linkedin-in:before {
+  color: floralwhite;
 }
 
 /* Add Animation */
@@ -699,10 +739,13 @@ body {
 /* toggle switch */
 
 .switch {
-  position: relative;
+  position: absolute;
+  left: 25%;
+  top: 0;
   display: inline-block;
   width: 60px;
   height: 34px;
+  z-index: 1;
 }
 
 
@@ -813,8 +856,8 @@ input[type=range]:focus::-ms-fill-upper {
   position: absolute;
   cursor: pointer;
   top: 0;
-  left: 0;
-  right: 0;
+  left: -31.4px;
+  right: 31px;
   bottom: 0;
   background-color: #ca2222;
   -webkit-transition: .4s;
