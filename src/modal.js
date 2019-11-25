@@ -1,11 +1,11 @@
-document.getElementById("modal-container").innerHTML = `<div class="header-left">FREEDOM SPENDING</div><div class="header-right"><button id="myBtn">ABOUT</button></div>
+document.getElementById("modal-container").innerHTML = `<div class="header-left">GOVERNMENT SPENDING</div><div class="header-right"><button id="myBtn">ABOUT</button></div>
 
  
                                                     <div id="myModal" class="modal">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <span class="close">&times;</span>
-                                                                <h2>Freedom Spending</h2>
+                                                                <h2>Government Spending</h2>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p>This data vizualization was made possible via the Digital Accountability and Transparency Act of 2014 (DATA Act) (P.L. 113-101) signed by President Obama in May 2014. Thanks to the data's accessibilty I was able to create a visualization of Federal spending parsed into the US Treasury's budget functions. Additonally, here you'll find federal spending per state. I hope this project insipres increasingly incisive data visualizations that increase transperency.</p>
