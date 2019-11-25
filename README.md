@@ -5,12 +5,10 @@
 The proverbial political climate is often weathered with debate, misinformation, and confusion about government spending.
 This project aims to empower citizens, denizens, or otherwise with a visually intuitive resourse to overcome spending rhetoric and propaganda.
 
-Inspired by 16segments (https://github.com/mrkvncnt/16Segments)
-
 ## Functionality & MVP
 
 - See nation government spending
-- Refine spending by state, county and city
+- Refine spending by state
 - View expenses as list and chart
 
 ## Wireframes
@@ -26,7 +24,7 @@ Addtionally, the upper right will have icons linking to my GitHub and LinkedIn p
 This project will be built with:
 
 - JavaScript for data retrieval and computation
-- D3.js + HTML5 + SVG + CSS3 for interactive visualization
+- D3.js + Chart.js + HTML5 + SVG + CSS3 for interactive visualization
 - Webpack + Babel to bundle js files.
 
 ## Implementation Timeline
