@@ -69,6 +69,11 @@ function selectState(d) {
     populationDefault = statesData[d.name].population;
     medianIncomeDefault = statesData[d.name].median_household_income;
     drawMap();
+    console.log(d)
+    var st = document.getElementsByClassName("state--selected");
+    for (let i = 0; i < st.length; i++) {
+        ceiling ? st[i].childNodes[0].style.fill = "#f70022" : st[i].childNodes[0].style.fill = "#2196F3";
+    }
 }
 
 function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaDefault, populationValue = populationDefault, medianIncomeValue = medianIncomeDefault, category = 'total_prime_amount', category2 = 'award_amount_per_capita', category3 = 'population', category4 = 'median_household_income') {
@@ -140,6 +145,11 @@ function displayQualified(stateValue = stateDefault, perCapitaValue = perCapitaD
     }
 
     drawMap();
+
+    var st = document.getElementsByClassName("state--selected");
+    for (let i = 0; i < st.length; i++) {
+        ceiling ? st[i].childNodes[0].style.fill = "#f70022" : st[i].childNodes[0].style.fill = "#2196F3";
+    }
 }
 
 dragElement(document.getElementById("radar-controls"));

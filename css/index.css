@@ -936,7 +936,7 @@ input[type=range]:focus::-ms-fill-upper {
   left: -31.4px;
   right: 31px;
   bottom: 0;
-  background-color: #ca2222;
+  background-color: #2196F3;
   -webkit-transition: .4s;
   transition: .4s;
    /* border-radius: 34px; */
@@ -956,11 +956,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #ca2222;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #ca2222;
 }
 
 input:checked + .slider:before {
