@@ -115,10 +115,10 @@ fips.map(fip => {
     getData(`https://api.usaspending.gov/api/v2/recipient/state/${fip}`).then(data => {
         
         Object.assign(statesData, { [data.code]: data })
-        if (maxState < data.total_prime_amount) { maxState = data.total_prime_amount};
+        if (maxState < data.total_prime_amount) { maxState = data.total_prime_amount };
         if (maxCapita < data.award_amount_per_capita) { maxCapita = data.award_amount_per_capita };
         if (maxPop < data.population) { maxPop = data.population };
-        if (maxIncome < data.median_household_income) { maxIncome = data.median_household_income};
+        if (maxIncome < data.median_household_income) { maxIncome = data.median_household_income };
     })
 
 })
@@ -128,4 +128,4 @@ setTimeout(() => {
     slider2.max = maxCapita;
     slider3.max = maxPop;
     slider4.max = maxIncome;
-}, 1700)
+}, 3000)
