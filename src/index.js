@@ -149,7 +149,7 @@ const freedom = () => {
                 data: {
                     labels: budget_function_amounts.map((result) => {
                         if (result.results.length === 0) {
-                            return "CALL YOUR CONGRESSPERSON"
+                            // return "CALL YOUR CONGRESSPERSON"
                         } else {
                             return result.results[0].name
                         }
