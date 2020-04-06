@@ -21,7 +21,7 @@ function postData(url = '', data = {}) {
         .then(response => response.json())
 }
 
-fiscalYear = "2018"
+fiscalYear = "2019"
 category = "total_prime_amount"
 
 function selectFiscalYear(selectedFiscalYear) {
