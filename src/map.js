@@ -69,7 +69,7 @@ function selectState(d) {
     populationDefault = statesData[d.name].population;
     medianIncomeDefault = statesData[d.name].median_household_income;
     drawMap();
-    console.log(d)
+    // console.log(d)
     var st = document.getElementsByClassName("state--selected");
     for (let i = 0; i < st.length; i++) {
         ceiling ? st[i].childNodes[0].style.fill = "#f70022" : st[i].childNodes[0].style.fill = "#2196F3";

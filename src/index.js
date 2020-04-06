@@ -191,7 +191,7 @@ const freedom = () => {
             }))
 
         breakdown(budget_function_amounts, colors)
-    }, 6000)
+    }, 2000)
 };
 
 freedom();
