@@ -49,20 +49,19 @@ const freedom = () => {
     federal_budget = 0
 
     _promise1 = getData('https://api.usaspending.gov/api/v2/budget_functions/list_budget_functions/').then(data => {
-        // console.log(data)
         data.results.map((result) => {
             // budget_function_titles.push(result.budget_function_title)
             budget_function_codes.push(result.budget_function_code)
         }).then(budget_function_codes.map((code) => {
             postData('https://api.usaspending.gov/api/v2/spending/', {
                 "type": "budget_function",
-                // "state": "CA",
                 "filters": {
                     "fy": fiscalYear,
                     "budget_function": code,
                 }
             }).then(data => {
-                budget_function_amounts.push(data)
+                // budget_function_amounts.push(data)
+                fiscalYear === "2019" ? budget_function_amounts = budget_functions_2019 : fiscalYear === "2018" ? budget_function_amounts = budget_functions_2018 : budget_function_amounts = budget_functions_2017
             }).catch(error => {
                 console.log(error)
             })
